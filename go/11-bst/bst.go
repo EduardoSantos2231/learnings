@@ -1,6 +1,5 @@
 package main
 
-
 type treeNode struct {
 	value int
 	left  *treeNode
@@ -19,10 +18,10 @@ func (r *root) insert(value int) {
 		return
 	}
 
-	r.root = advanceToInsert(r.root, value)
+	r.root = insertRecursive(r.root, value)
 }
 
-func advanceToInsert(node *treeNode, value int) *treeNode {
+func insertRecursive(node *treeNode, value int) *treeNode {
 	if node == nil {
 		return &treeNode{
 			value: value,
@@ -30,24 +29,52 @@ func advanceToInsert(node *treeNode, value int) *treeNode {
 	}
 
 	if value < node.value {
-		node.left = advanceToInsert(node.left, value)
+		node.left = insertRecursive(node.left, value)
 	} else {
-		node.right = advanceToInsert(node.right, value)
+		node.right = insertRecursive(node.right, value)
 	}
 
 	return node
 }
 
 func (r *root) delete(value int) {
-
+	if r.treeIsEmpty() {
+		return
+	}
+	r.root = findNodeToRemove(r.root, value)
 }
 
 func findNodeToRemove(node *treeNode, val int) *treeNode {
-
+	if node == nil {
+		return nil
+	}
+	if node.value == val {
+		if node.right == nil && node.left == nil {
+			return nil
+		}
+		if node.right == nil {
+			return node.left
+		}
+		if node.left == nil {
+			return node.right
+		}
+		if node.left != nil && node.right != nil {
+			//achar menor subtree da direita
+		}
+	}
+	if node.value > val {
+		node.left = findNodeToRemove(node.left, val)
+	} else {
+		node.right = findNodeToRemove(node.right, val)
+	}
+	return node
 }
 
 func (r *root) search(value int) *treeNode {
-
+	if r.treeIsEmpty() {
+		return nil
+	}
+	return searchAndAdvance(r.root, value)
 }
 
 func searchAndAdvance(node *treeNode, val int) *treeNode {
