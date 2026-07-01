@@ -58,8 +58,13 @@ func findNodeToRemove(node *treeNode, val int) *treeNode {
 		if node.left == nil {
 			return node.right
 		}
+		// esse seria o último caso possível (2 filhos), não precisaria do IF mas quis deixar explícito
 		if node.left != nil && node.right != nil {
 			//achar menor subtree da direita
+			successor := traverseLeft(node.right)
+			node.value = successor.value
+			node.right = findNodeToRemove(node.right, successor.value)
+			return node
 		}
 	}
 	if node.value > val {
