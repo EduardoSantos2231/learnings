@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	rootNode := &root{
 		root: &treeNode{
@@ -25,5 +27,11 @@ func main() {
 		},
 	}
 	rootNode.insert(2)
-
+	rootNode.insert(4)
+	rootNode.insert(10)
+	ordered := rootNode.inOrder()
+	fmt.Println(ordered)
+	rootNode.delete(10)
+	ordered = rootNode.inOrder()
+	fmt.Println(ordered)
 }
