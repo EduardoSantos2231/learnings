@@ -16,7 +16,8 @@ Roteiro completo em [roteiro.md](./roteiro.md).
 | 08 | shape-interface | Interface implicita, type switch |
 | 09 | stack-queue | Thread-safe, pub/priv split, memory leak |
 | 10 | io-reader-writer | io.Reader/Writer, delegacao, io.Copy |
-| 11 | bst | Arvore binaria, recursao, Delete (em andamento) |
+| 11 | bst | Arvore binaria, recursao, Delete (3 casos) |
+| 12 | cache-ttl | RWMutex, lazy eviction, cleanup goroutine, chan struct{} |
 
 ## Para retomar
 

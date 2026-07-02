@@ -14,6 +14,8 @@
 | **Estilo de aprendizado** | Guiado por conceitos — prefere direcionamento e correcao a receber codigo pronto |
 | **Foco** | Entrevistas para vagas Go (junior/pleno) |
 | **Regra de ouro** | Apenas biblioteca padrao (sem libs externas) |
+| **Regra do professor** | Nunca entregar código pronto. Conduzir com perguntas, apontar contradições, sugerir caminhos. A excelência do aluno é o objetivo — ele quem escreve, explica e decide entre alternativas. |
+| **Regra do aluno** | Codar, explicar a própria implementação e escolher entre A ou B quando o professor apresentar caminhos. |
 
 ---
 
@@ -303,6 +305,66 @@
 
 ---
 
+### 2.11 — BST (recursão + delete 3 casos) `[C.3]`
+
+**Arquivos:** `11-bst/bst.go`, `11-bst/main.go`
+
+| Item | Detalhe |
+|---|---|
+| **Conceitos** | `treeNode` struct, recursão em Go, delete 3 casos (folha, 1 filho, 2 filhos), `traverseLeft` como sucessor inorder |
+| **Métodos** | `insert`, `delete`, `search`, `inOrder`, `min`, `max` |
+
+**✅ O que funcionou bem:**
+- `delete` com `findNodeToRemove` retornando `*treeNode` — padrão recursivo de religação da subárvore no desenrolar da pilha (mesmo pattern do `insertRecursive`)
+- `search()` consertado (estava vazio, passou a delegar pra `searchAndAdvance`)
+- Renomeação `advanceToInsert` → `insertRecursive` — nomenclatura mais clara
+
+**⚠️ Pontos a melhorar:**
+- `if node.left != nil && node.right != nil` no delete é redundante (caso 2 filhos é o único que sobra quando chega ali) — estudante deixou explícito de propósito
+- `if/else` na navegação (`> val` / `< val`) vs `if/if` simétrico — frágil se alguém mexer na ordem dos blocos e pular o `return`
+
+**🔁 Comportamento observado:**
+- **Maior dificuldade:** entender como as chamadas recursivas se empilham na call stack, principalmente no delete — onde o retorno religa os ponteiros da subárvore modificada
+- **Condições de parada:** `node == nil` (árvore vazia / não encontrou) e `node.value == val` (achou o alvo) — internalizado como padrão
+- **`return node` no fim da recursão:** padrão que religa os ponteiros corretamente no desenrolar — foi o conceito mais difícil de fixar
+- Caso 2 filhos exigiu visualizar: achar sucessor → copiar valor → deletar sucessor (deleção recursiva no mesmo nó)
+
+**📌 Sugestão para novos desafios:** Desenhar a pilha de chamadas no papel antes de codificar recursão. O delete da BST é o melhor exercício pra fixar "return node" como reconstrução.
+
+---
+
+### 2.12 — Cache TTL (RWMutex + lazy eviction + cleanup goroutine) `[A.2]`
+
+**Arquivos:** `12-cache-ttl/cache/cache.go`, `12-cache-ttl/main.go`
+
+| Item | Detalhe |
+|---|---|
+| **Conceitos** | `sync.RWMutex` (RLock para leitura, Lock para escrita), lazy eviction no `Get`, goroutine de cleanup com `time.NewTicker`, sinalização com `close(chan struct{})` |
+| **Métodos** | `NewCache`, `Set`, `Get`, `Delete`, `Stop` |
+
+**✅ O que funcionou bem:**
+- `RLock` em `Get`, `Lock` em `Set`/`Delete` — semântica correta de leitura concorrente vs escrita exclusiva
+- Lazy eviction: TTL verificado no `Get` — sem depender da goroutine de cleanup pra funcionar
+- `Stop()` com `ticker.Stop()` + `close(quit)` — ordem correta (parar ticker antes de fechar o canal evita tick perdido)
+- `for { select { case <-ticker.C: lock → clean → unlock; case <-quit: return } }` — padrão idêntico ao Rate Limiter, aplicado corretamente
+- `NewCache` evoluiu de "sem parâmetro" para `NewCache(interval time.Duration)` — decisão própria
+
+**⚠️ Pontos a melhorar:**
+- `defer c.mu.Lock()` em vez de `Unlock` — quase deadlock (corrigido)
+- `NewCache` com `defer result.ticker.Stop()` — matava o ticker antes do primeiro cleanup (corrigido)
+- `Stop()` inicialmente só fechava `quit` sem parar o ticker — goroutine fazia o `Stop` dentro do `case <-quit`
+
+**🔁 Comportamento observado:**
+- **Maior dificuldade:** manipulação de tempo em Go (`time.Time` vs `time.Duration`, `time.Now().Add(ttl)`, `time.Now().After(t)`)
+- **`chan struct{}`:** estranhou o conceito de canal vazio pra sinalização — perguntou "por que não `chan bool`?" — internalizou que `struct{}` é o padrão Go por ocupar 0 bytes
+- **`ticker.Stop()` não fecha o canal:** descobriu na prática que `for range ticker.C` trava mesmo após `Stop()` — levou à adição do `quit`
+- **`close(nil)` → panic:** esqueceu de inicializar `quit` no construtor — aprendeu que canal zero value é nil
+- Decidiu sozinho que `NewCache` sem parâmetro era suficiente (só lazy eviction), depois evoluiu para aceitar `interval` e adicionar cleanup periódico
+
+**📌 Sugestão para novos desafios:** Sempre testar `close()` em canais não inicializados antes de confiar. `ticker.Stop()` não fecha o canal do ticker — se for usar `for range`, precisa de um canal de quit separado.
+
+---
+
 ## 3. Padroes de Erro Recorrentes
 
 ### Ranking por frequencia
@@ -346,7 +408,7 @@ Peso maximo em entrevistas. Foco em `select` com send, `sync.Mutex`/`RWMutex`, `
 - Goroutine em background recarrega tokens periodicamente
 - **Teste:** 100 goroutines tentando consumir — garantir que nao ultrapassa `capacity`
 
-#### A.2 — Cache Concorrente com TTL
+#### A.2 — Cache Concorrente com TTL ✅ CONCLUIDO
 - `type Cache struct { data map[string]cacheEntry; mu sync.RWMutex }`
 - `type cacheEntry struct { value any; expiresAt time.Time }`
 - `Get`, `Set`, `Delete` com `RWMutex` (leituras concorrentes, escrita exclusiva)
@@ -405,7 +467,7 @@ Estruturas classicas em Go. Atencao a ponteiros, nil seguro, e slices.
 - Versao thread-safe com `sync.Mutex`
 - **Pegadinha:** memory leak em Pop — o slice subjacente mantem referencia ao elemento removido. Fazer `s.items[len-1] = ""` antes de cortar.
 
-#### C.3 — Binary Search Tree
+#### C.3 — Binary Search Tree ✅ CONCLUIDO
 - `type Node struct { Value int; Left, Right *Node }`
 - `Insert`, `Search`, `InOrder`, `PreOrder`, `PostOrder` (retornam `[]int`)
 - `Min`, `Max`, `Delete` (o Delete e o mais dificil — 3 casos)
@@ -510,7 +572,7 @@ Projetos que juntam tudo: HTTP + concorrencia + estruturas de dados + testes.
 ```
 Semana 1:  A.1 (Rate Limiter) + C.1 (Linked List)
 Semana 2:  B.1 (Shape interface) + C.2 (Stack/Queue)
-Semana 3:  B.2 (Reader/Writer) + C.3 (BST)
+Semana 3:  B.2 (Reader/Writer) + C.3 (BST) ✅
 Semana 4:  A.2 (Cache TTL) + B.3 (nil interface gotcha)
 Semana 5:  D.1 (CRUD API) + D.2 (Middlewares)
 Semana 6:  D.3 (JSON errors) + D.4 (Graceful Shutdown)
@@ -619,10 +681,14 @@ learnings/
 │   │   ├── go.mod
 │   │   ├── countingReader.go
 │   │   └── upperWritter.go
-│   └── 11-bst/                 ← Exercicio em andamento (BST)
+│   ├── 11-bst/                 ← Exercicio C.3 (BST) ✅ CONCLUIDO
+│   │   ├── main.go
+│   │   ├── go.mod
+│   │   └── bst.go
+│   └── 12-cache-ttl/           ← Exercicio A.2 (Cache TTL) ✅ CONCLUIDO
 │       ├── main.go
 │       ├── go.mod
-│       └── bst.go
+│       └── cache/cache.go
 │
 ├── typescript/                 ← Futuros exercícios TS
 └── dsa/                        ← Revisoes pendentes de DSA
