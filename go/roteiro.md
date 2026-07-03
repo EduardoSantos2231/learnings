@@ -365,6 +365,38 @@
 
 ---
 
+### 2.13 — Products API (HTTP CRUD + middleware) `[D.1]`
+
+**Arquivos:** `13-products-api/main.go`, `13-products-api/product/products.go`, `13-products-api/product/store.go`
+
+| Item | Detalhe |
+|---|---|
+| **Conceitos** | `net/http`, `http.ServeMux` com patterns de método + path param, `json.NewEncoder`/`json.NewDecoder`, `r.PathValue`, middleware pattern (`func(http.Handler) http.Handler`), `interface` no `main.go` para desacoplar store dos handlers |
+| **Métodos/Rotas** | `GET /products`, `POST /products`, `GET /products/{id}`, `PUT /products/{id}`, `DELETE /products/{id}` |
+
+**✅ O que funcionou bem:**
+- Interface `database` no `main.go` — desacoplou os handlers da implementação concreta da store
+- Middleware `jsonMiddleware` — centralizou `Content-Type` e removeu repetição dos handlers
+- Store com `NewStore()` — manteve `items` privado com encapsulamento real
+- ID auto-incremento com `sync.Mutex` — thread-safe e sem expor ponteiro interno
+- Pub/priv split no `Store` — método privado `getById` + público `GetById` com lock resolveu deadlock
+
+**⚠️ Pontos a melhorar:**
+- `strconv.Atoi` erro usando `500 InternalServerError` em vez de `400 BadRequest` — erro é do cliente, não do servidor
+- `userData.ID` vs `userData.Product.ID` em struct embutido — confusão com embedding de struct
+- `ticker.Stop()` não fecha o canal — descoberto na prática (mesmo erro do Rate Limiter revisitado)
+
+**🔁 Comportamento observado:**
+- **Dificuldade principal:** struct fields minúsculos ignorados pelo `json.Encode` — apareceu 3x (no `dealError` original, no `getProducts` e nos handlers de POST/PUT/DELETE) até fixar que campo JSON precisa ser exportado
+- **Middleware:** entendeu o padrão `func(next http.Handler) http.Handler` e aplicou corretamente — removeu `Content-Type` repetido de todos os handlers
+- **JSON:** internalizou `json.NewDecoder(r.Body).Decode(&val)` para leitura e `json.NewEncoder(w).Encode(val)` para escrita
+- **Interface no main:** entendeu que interface perto de quem usa (main.go) permite trocar implementação sem mexer nos handlers
+- **Raciocínio sobre locks:** decidiu sozinho que `Delete` e `Update` deveriam ter `Lock` (não `RLock`) por serem operações de escrita — correto
+
+**📌 Sugestão para novos desafios:** Separar handlers em arquivo próprio (`handlers.go`) e manter `main.go` só com servidor + middlewares. Próximo passo natural é D.2 (cadeia de middlewares).
+
+---
+
 ## 3. Padroes de Erro Recorrentes
 
 ### Ranking por frequencia
@@ -485,7 +517,7 @@ Estruturas classicas em Go. Atencao a ponteiros, nil seguro, e slices.
 
 Foco em `net/http`, `encoding/json`, middlewares, graceful shutdown.
 
-#### D.1 — CRUD de Produtos
+#### D.1 — CRUD de Produtos ✅ CONCLUIDO
 - `type Product struct { ID int; Name string; Price float64 }`
 - Rotas: `GET /products`, `POST /products`, `GET /products/{id}`, `PUT /products/{id}`, `DELETE /products/{id}`
 - Usar `http.ServeMux` (Go 1.22+) com patterns como `GET /products/{id}`
@@ -685,10 +717,15 @@ learnings/
 │   │   ├── main.go
 │   │   ├── go.mod
 │   │   └── bst.go
-│   └── 12-cache-ttl/           ← Exercicio A.2 (Cache TTL) ✅ CONCLUIDO
+│   ├── 12-cache-ttl/           ← Exercicio A.2 (Cache TTL) ✅ CONCLUIDO
 │       ├── main.go
 │       ├── go.mod
 │       └── cache/cache.go
+│   └── 13-products-api/        ← Exercicio D.1 (CRUD HTTP API) ✅ CONCLUIDO
+│       ├── main.go
+│       ├── go.mod
+│       ├── product/products.go
+│       └── product/store.go
 │
 ├── typescript/                 ← Futuros exercícios TS
 └── dsa/                        ← Revisoes pendentes de DSA

@@ -18,6 +18,7 @@ Roteiro completo em [roteiro.md](./roteiro.md).
 | 10 | io-reader-writer | io.Reader/Writer, delegacao, io.Copy |
 | 11 | bst | Arvore binaria, recursao, Delete (3 casos) |
 | 12 | cache-ttl | RWMutex, lazy eviction, cleanup goroutine, chan struct{} |
+| 13 | products-api | HTTP CRUD, ServeMux, RWMutex, middleware |
 
 ## Para retomar
 
