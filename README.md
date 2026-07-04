@@ -5,6 +5,7 @@ Repo onde organizo tudo que estou estudando.
 ## Linguagens
 
 - [Go](./go/) — roteiro de estudos e exercicios progressivos
+- [Docker](./docker/) — roteiro de estudos e desafios progressivos (do zero)
 
 ## DSA em revisao
 
