@@ -64,4 +64,37 @@
 | # | Erro | Desafio | Por que acontece |
 |---|---|---|---|
 | 1 | `/temp/` em vez de `/tmp/` | 02 | Confundir diretório temporário do Linux |
-| 2 | ... | ... | ... |
+
+---
+
+## 5. Tópicos Transversais (pendentes de estudo)
+
+Conceitos que não pertencem a um único desafio — devem ser revisitados em vários:
+
+| Tópico | Onde entra | Prioridade |
+|--------|-----------|------------|
+| **Caching de build** | Como o Docker reaproveita layers, `--no-cache`, cache miss, ordem ideal das instruções | 🔥 alta |
+| **Boas práticas de Dockerfile** | Camadas mínimas, limpeza de cache de apt (`rm -rf /var/lib/apt/lists/*`), pin de versão, usuário não-root | 🔥 alta |
+| **Otimização de imagem** | Imagens slim/alpine, multi-stage build, `.dockerignore`, `docker scout` | 🔥 média |
+| **Segurança** | Usuário não-root, evitar `:latest`, evitar `ADD` de URLs não confiáveis, `HEALTHCHECK` | 🔥 média |
+
+---
+
+## 6. Checklist de Revisão
+
+Após cada desafio, preencher:
+
+```
+Desafio concluído: ___
+Data: __/__/____
+Erros antigos que NÃO se repetiram:
+  - [ ]
+Erros novos:
+  - [ ]
+Conceito que ficou claro:
+  -
+Conceito que ainda gera dúvida:
+  -
+Próximo desafio:
+  -
+```
