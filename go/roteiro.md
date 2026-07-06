@@ -397,6 +397,32 @@
 
 ---
 
+### 2.14 — nil interface gotcha (B.3)
+
+**Arquivos:** `14-nil-interface-gotcha/main.go`
+
+| Item | Detalhe |
+|---|---|
+| **Conceitos** | Interface como par `(type, value)`, `nil` interface vs `nil` pointer dentro de interface, `reflect.ValueOf(w).IsNil()`, `recover()` |
+| **Fluxo** | `var w io.Writer` (nil) → `var buf *bytes.Buffer` (nil) → `w = buf` → `w != nil` (gotcha!) → `w.Write()` → panic |
+
+**✅ O que funcionou bem:**
+- Fluxo de demonstração correto: printa `w == nil: true`, atribui, printa `false`, chama `Write`, panica, `recover()` captura
+- `safeWrite` com `reflect.ValueOf(w).IsNil()` — implementação funcional
+
+**⚠️ Pontos a melhorar:**
+- Resposta Q1 descreveu sintoma mas não o mecanismo (par type, value)
+- Resposta Q3 não soube citar casos reais (error com ponteiro nil, io.Reader nil)
+- `safeWrite` com `IsNil()` pode panica se kind não for nilable — precisa checar `Kind` antes
+- Comentário: `bytes.Buffer` vs `*bytes.Buffer` — quem implementa `Write` é o pointer receiver
+
+**🔁 Comportamento observado:**
+- Entendimento prático do gotcha ok, mas conceito de `(type, value)` pair ainda não internalizado
+
+**📌 Sugestão:** Revisar o conceito de interface value = (type, value) pair antes de avançar para B.4 (Generic Stack) ou D.2 (Middleware Chain).
+
+---
+
 ## 3. Padroes de Erro Recorrentes
 
 ### Ranking por frequencia
@@ -471,7 +497,7 @@ O que mais diferencia Go de outras linguagens. Interfaces sao implicitas (duck t
 - `countingWriter` (extra) — delegacao + contagem para `io.Writer`
 - **Novo conceito:** middleware pattern com interfaces (wrapper/decorator)
 
-#### B.3 — nil interface gotcha
+#### B.3 — nil interface gotcha ✅ CONCLUIDO
 - `var w io.Writer` (nil interface — valor E tipo sao nil)
 - `var buf *bytes.Buffer` (nil pointer) → atribuir a `w = buf` → `w != nil` (o tipo nao e nil!)
 - Escrever codigo que demonstra o gotcha e explica POR QUE acontece
@@ -726,6 +752,11 @@ learnings/
 │       ├── go.mod
 │       ├── product/products.go
 │       └── product/store.go
+│   └── 14-nil-interface-gotcha/ ← Exercicio B.3 (nil interface gotcha) ✅ CONCLUIDO
+│       ├── README.md
+│       ├── perguntas.md
+│       ├── respostas.md
+│       └── main.go
 │
 ├── typescript/                 ← Futuros exercícios TS
 └── dsa/                        ← Revisoes pendentes de DSA

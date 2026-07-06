@@ -19,6 +19,7 @@ Roteiro completo em [roteiro.md](./roteiro.md).
 | 11 | bst | Arvore binaria, recursao, Delete (3 casos) |
 | 12 | cache-ttl | RWMutex, lazy eviction, cleanup goroutine, chan struct{} |
 | 13 | products-api | HTTP CRUD, ServeMux, RWMutex, middleware |
+| 14 | nil-interface-gotcha | interface (type, value) pair, nil pointer vs nil interface, reflect |
 
 ## Para retomar
 
