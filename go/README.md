@@ -20,6 +20,7 @@ Roteiro completo em [roteiro.md](./roteiro.md).
 | 12 | cache-ttl | RWMutex, lazy eviction, cleanup goroutine, chan struct{} |
 | 13 | products-api | HTTP CRUD, ServeMux, RWMutex, middleware |
 | 14 | nil-interface-gotcha | interface (type, value) pair, nil pointer vs nil interface, reflect |
+| 15 | middleware-chain | Middleware chain, Logger, Recoverer, Auth, CORS |
 
 ## Para retomar
 

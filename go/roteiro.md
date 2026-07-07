@@ -423,7 +423,42 @@
 
 ---
 
-## 3. Padroes de Erro Recorrentes
+### 2.15 — Middleware Chain (D.2) ✅
+
+**Arquivos:** `15-middleware-chain/main.go`, `15-middleware-chain/product/products.go`, `15-middleware-chain/product/store.go`
+
+| Item | Detalhe |
+|---|---|
+| **Conceitos** | `func(http.Handler) http.Handler`, chain de middlewares, `defer recover()`, `bearer token` auth, CORS (`OPTIONS` preflight) |
+| **Middlewares** | `Logger`, `Recoverer`, `Auth`, `CORS`, `JSON` (Content-Type) |
+| **Chain** | `CORS → Auth → Recoverer → Logger → JSON → mux` |
+
+**✅ O que funcionou bem:**
+- `chain()` helper com variadic `...middleware` — pattern reutilizável
+- `Logger` com tempo antes e depois do `next` — duração correta
+- `Recoverer` capturando panic e retornando 500 JSON — sem crash
+- `CORS` tratando `OPTIONS` sem chamar `next` — preflight correto
+- `jsonMiddleware` centralizando `Content-Type` — sem repetição nos handlers
+- Store + Product copiados do D.1 sem erros novos — padrão consolidado
+- `authMiddleware` com bypass para `GET /products` (rota pública)
+
+**⚠️ Erros encontrados (ver correcoes.md para detalhes):**
+- `chain()` off-by-one — `len(middlewares)` em vez de `len-1`
+- `chain()` ignorado no `ListenAndServe` — middlewares duplicados
+- `recoverer` escrevia 500 em toda request (fora do `if recover()`)
+- Auth: `Split(token, "")` em vez de `Split(token, " ")` e `bearerTkn[2]` em vez de `[1]`
+- Auth: token ausente não retornava 401
+- `strconv.Atoi` erro como 500 (repetido do D.1)
+- Campo JSON não exportado no recoverer (repetido do D.1)
+- CORS sem `Access-Control-Allow-Headers`
+
+**🔁 Comportamento observado:**
+- Erros do D.1 se repetiram (500 em parsing, campo JSON privado) — indica que a correção anterior não fixou o hábito
+- Off-by-one no loop do `chain()` — padrão que já havia aparecido em desafios anteriores
+- Criou `chain()` mas não usou — codificou a solução e ignorou no passo seguinte (falta de revisão antes de rodar)
+- Respostas conceituais Q1, Q2, Q3 incompletas ou tangenciais — dificuldade em responder exatamente o que foi perguntado
+
+**📌 Sugestão:** Revisar o código inteiro antes de dar como pronto — os 3 bugs mais graves (chain off-by-one, recoverer incondicional, auth quebrado) seriam pegos por uma execução sequer com `go run`. Rodar o servidor e testar com `curl` antes de considerar pronto.
 
 ### Ranking por frequencia
 
@@ -440,6 +475,12 @@
 | 9 | **Mutex segurado por toda goroutine** (Lock antes do loop) | A.1 | Bloqueio permanente que impede qualquer outra goroutine de adquirir o lock |
 | 10 | **`for range timer.C` + `select { case <-timer.C }`** (double consumption) | A.1 | `for range` ja consome o tick; o `select` interno le o timer.C vazio e espera o proximo |
 | 11 | **`stopChan` com buffer 1 — segundo `Stop()` trava** | A.1 | Buffer cheio, ninguem le, send bloqueia pra sempre |
+| 12 | **Off-by-one em loop (`len` vs `len-1`)** | D.2 | Usar `len(middlewares)` em vez de `len-1` como último índice válido |
+| 13 | **Código condicional fora do `if`** (executa sempre) | D.2 | `WriteHeader(500)` fora do `if recover() != nil` — sempre executava |
+| 14 | **`Split` com separador errado** | D.2 | `Split(token, "")` em vez de `Split(token, " ")` — espaço vs vazio |
+| 15 | **Status code errado p/ erro do cliente (500 → 400)** | D.1, D.2 | `strconv.Atoi` parsing invalido nao e erro do servidor — repetiu o erro do D.1 |
+| 16 | **Campo JSON nao exportado (letra minuscula)** | D.1, D.2 | `message string` — `json.Encode` ignora campos privados — repetiu o erro do D.1 |
+| 17 | **Codificar solucao e nao usa-la** (chain ignorado) | D.2 | Criou `chain()` mas passou wrapping manual pro `ListenAndServe` |
 
 ### Padroes conceituais ja internalizados
 
@@ -550,12 +591,13 @@ Foco em `net/http`, `encoding/json`, middlewares, graceful shutdown.
 - Store em memoria com `sync.RWMutex`
 - `Content-Type: application/json`
 
-#### D.2 — Middleware Chain
+#### D.2 — Middleware Chain ✅ CONCLUIDO
 - `func Logger(next http.Handler) http.Handler` — loga metodo, path, duracao
 - `func Recoverer(next http.Handler) http.Handler` — `defer recover()` evita crash
 - `func Auth(next http.Handler) http.Handler` — header `Authorization: Bearer <token>`
-- `func CORS(next http.Handler) http.Handler`
-- Compose: `Auth(Recoverer(Logger(mux)))`
+- `func CORS(next http.Handler) http.Handler` — CORS headers + OPTIONS preflight
+- `func chain(h http.Handler, m ...middleware) http.Handler` — composição variádica
+- Chain final: `CORS(Auth(Recoverer(Logger(JSON(mux)))))`
 
 #### D.3 — JSON Errors padronizados
 - `type APIError struct { Code int; Message string; Details any }`
@@ -632,7 +674,7 @@ Semana 1:  A.1 (Rate Limiter) + C.1 (Linked List)
 Semana 2:  B.1 (Shape interface) + C.2 (Stack/Queue)
 Semana 3:  B.2 (Reader/Writer) + C.3 (BST) ✅
 Semana 4:  A.2 (Cache TTL) + B.3 (nil interface gotcha)
-Semana 5:  D.1 (CRUD API) + D.2 (Middlewares)
+Semana 5:  D.1 (CRUD API) + D.2 (Middlewares) ✅
 Semana 6:  D.3 (JSON errors) + D.4 (Graceful Shutdown)
 Semana 7:  E.1 (Table tests) + E.2 (Mock via interface)
 Semana 8:  F.1 (URL Shortener)
@@ -757,6 +799,13 @@ learnings/
 │       ├── perguntas.md
 │       ├── respostas.md
 │       └── main.go
+│   └── 15-middleware-chain/      ← Exercicio D.2 (Middleware Chain) ✅ CONCLUIDO
+│       ├── README.md
+│       ├── perguntas.md
+│       ├── respostas.md
+│       ├── go.mod
+│       ├── main.go
+│       └── product/{store,products}.go
 │
 ├── typescript/                 ← Futuros exercícios TS
 └── dsa/                        ← Revisoes pendentes de DSA

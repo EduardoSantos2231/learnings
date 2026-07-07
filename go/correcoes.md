@@ -39,3 +39,101 @@ return false
 ### Código: Comentário impreciso
 
 **Linha 25-26:** "buffer possui sim o método Write" — quem implementa `Write` é `*bytes.Buffer` (pointer receiver), não `bytes.Buffer` struct.
+
+---
+
+## 15 — Middleware Chain (D.2)
+
+### Código: `chain()` off-by-one
+
+**Problema:** `for i := len(middlewares); i > 0; i--` — `len(middlewares)` é 5, índices válidos 0-4. Acessar `middlewares[5]` dá panic.
+
+**Correção:** `for i := len(middlewares) - 1; i >= 0; i--` — começa do último índice válido e inclui o índice 0.
+
+**Tipo:** Falta de atenção — off-by-one clássico. Precisou de 2 iterações pra acertar.
+
+### Código: `chain()` ignorado no `ListenAndServe`
+
+**Problema:** Criou `finalHandler` com `chain(mux, middlewares...)` mas passou `loggerMiddleware(jsonMiddleware(finalHandler))` pro servidor — `chain()` foi descartado, middlewares rodavam duplicados ou não rodavam.
+
+**Correção:** `http.ListenAndServe(":8080", finalHandler)` — usa o handler montado pelo `chain()` direto.
+
+**Tipo:** Falta de atenção — codificou a solução (`chain`) e depois a ignorou.
+
+### Código: `recovererMiddleware` escrevia 500 em toda request
+
+**Problema:** O `w.WriteHeader(500)` + `Encode` estavam **fora** do `if recover() != nil` — executavam em toda requisição, inclusive nas bem-sucedidas.
+
+**Correção:** Mover `WriteHeader` + `Encode` pra **dentro** do `if err := recover(); err != nil { ... }`.
+
+**Tipo:** Lógica condicional — não percebeu que o código depois do `if` roda sempre.
+
+### Código: Auth não validava token
+
+**Problema 1:** `strings.Split(token, "")` separa cada caractere individualmente. `bearerTkn[2]` era o 3º caractere, não "admin123".
+
+**Correção 1:** `strings.Split(token, " ")` e `bearerTkn[1]`.
+
+**Problema 2:** `token == ""` só dava `return` sem escrever 401 — cliente recebia resposta vazia.
+
+**Correção 2:** `w.WriteHeader(http.StatusUnauthorized)` antes do `return`.
+
+**Tipo:** Falta de atenção — confundiu separador vazio com espaço e esqueceu de retornar status.
+
+### Código: `strconv.Atoi` erro como 500 (repetido do D.1)
+
+**Problema:** `http.StatusInternalServerError` em parsing de ID inválido — erro é do cliente.
+
+**Correção:** `http.StatusBadRequest`.
+
+**Tipo:** Erro recorrente — mesmo ponto já anotado no D.1. Indica que a correção anterior não fixou.
+
+### Código: Campo JSON não exportado no recoverer (repetido do D.1)
+
+**Problema:** `message string` (minúsculo) — `json.Encode` ignora campos não exportados.
+
+**Correção:** `Message string`.
+
+**Tipo:** Erro recorrente — mesmo erro do D.1, repetido 3x naquele desafio.
+
+### Código: CORS sem `Access-Control-Allow-Headers`
+
+**Problema:** Preflight `OPTIONS` não informava quais headers eram permitidos — navegador bloqueava requisições com `Authorization`.
+
+**Correção:** Adicionar `w.Header().Add("Access-Control-Allow-Headers", "Content-Type, Authorization")`.
+
+**Tipo:** Conhecimento de protocolo — faltou saber que o preflight precisa desse header.
+
+### Respostas conceituais
+
+#### Q1 — Handler vs Middleware
+
+**Problema:** Respondeu sobre `HandleFunc` typecasting em vez da pergunta.
+
+**Correção:** A diferença é:
+- `func(w, r)` = handler, processa **uma** requisição
+- `func(next) Handler` = middleware, **envolve** um handler adicionando comportamento antes/depois
+
+#### Q2 — Escrever depois do `next.ServeHTTP`
+
+**Problema:** Resposta vaga sobre "desempilhar". Não explicou o mecanismo.
+
+**Correção:** Se o handler interno chamou `w.Write()`, o status code e headers já foram enviados (congelados). Escrever headers depois do `next` é silenciosamente ignorado pelo `net/http`. Se o handler não escreveu nada, funciona.
+
+#### Q3 — Múltiplos `defer recover()` na chain
+
+**Problema:** Não respondeu "e se mais de um middleware tiver defer recover?".
+
+**Correção:** A pilha de defers é LIFO. O recover **mais interno** (mais próximo do handler que panica) roda primeiro. Se ele recuperar, os externos não veem o panic. Se ele não recuperar (`recover()` retorna nil), o próximo da pilha (mais externo) tenta.
+
+#### Q4 — Auth antes de Logger (resposta ausente na 1ª versão)
+
+**Problema:** Não respondeu na primeira versão.
+
+**Correção:** Auth antes de Logger economiza recursos (não loga requisições rejeitadas) e reduz superfície de ataque (usuário não autenticado não passa do auth).
+
+#### Q6 — `Vary: Origin` com `Access-Control-Allow-Origin: *`
+
+**Problema:** Resposta explicou Vary corretamente mas não concluiu se é recomendado.
+
+**Correção:** Não é recomendado. `Vary: Origin` serve para variar o cache por origem quando o servidor reflete o valor do `Origin` request header (ex: `Access-Control-Allow-Origin: https://example.com`). Com `*` (permite todas as origens), a resposta não varia — `Vary: Origin` é desnecessário e prejudica o cache.
