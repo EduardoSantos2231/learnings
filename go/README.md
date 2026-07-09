@@ -22,6 +22,7 @@ Roteiro completo em [roteiro.md](./roteiro.md).
 | 14 | nil-interface-gotcha | interface (type, value) pair, nil pointer vs nil interface, reflect |
 | 15 | middleware-chain | Middleware chain, Logger, Recoverer, Auth, CORS |
 
+
 ## Para retomar
 
 Leia o [roteiro.md](./roteiro.md) e me chame: "Professor, estou no Modulo ___. Vamos comecar o exercicio ___."

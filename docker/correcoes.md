@@ -36,3 +36,41 @@
 - `docker run -it ubuntu bash` → o **bash é o PID 1** do container. Quando você dá `exit`, o PID 1 morre → **container morre junto** (status `exited`).
 - `docker exec -it <container> bash` → o bash é um **processo filho** do PID 1. Quando você dá `exit`, só o bash morre. O PID 1 e o container **continuam rodando**.
 - Por isso `docker start -ai` funciona depois de um `exit` no `docker run`: você está "religando" o container que morreu. E por isso `docker exec` permite entrar e sair quantas vezes quiser sem matar nada.
+
+---
+
+## 03b — entrypoint-vs-cmd
+
+### Q3 — CMD sem ENTRYPOINT: argumento substitui, não concatena
+
+**Sua resposta inicial:** "o argumento é inserido após o padrão"
+
+**Correção:** Sem ENTRYPOINT, o CMD é o comando inteiro. Passar argumentos no `docker run` **substitui** o CMD completamente, não concatena. Exemplo:
+
+```dockerfile
+CMD ["cat", "index.html"]
+```
+
+- `docker run meu-site` → executa `cat index.html`
+- `docker run meu-site /etc/os-release` → tenta executar `/etc/os-release` como comando (falha com permissão negada)
+
+A concatenação só ocorre quando há `ENTRYPOINT` + `CMD`.
+
+### Q5 — ENTRYPOINT para alvo fixo + flags flexíveis
+
+**Sua resposta inicial:** `CMD ["ping", "google.com"]`
+
+**Correção:** Com `CMD` puro, o usuário não consegue passar flags — o argumento substituiria o comando inteiro. Solução correta:
+
+```dockerfile
+ENTRYPOINT ["ping"]
+CMD ["google.com"]
+```
+
+Assim o alvo `google.com` é default substituível, e flags como `-c 4` são injetadas no ping.
+
+### ✅ Acertos
+
+- Entendeu `ENTRYPOINT` como programa fixo e `CMD` como argumento default
+- Testou na prática com `cat` e confirmou os comportamentos
+- Q1, Q2, Q4 respondidas corretamente de primeira

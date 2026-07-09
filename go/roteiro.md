@@ -460,6 +460,18 @@
 
 **📌 Sugestão:** Revisar o código inteiro antes de dar como pronto — os 3 bugs mais graves (chain off-by-one, recoverer incondicional, auth quebrado) seriam pegos por uma execução sequer com `go run`. Rodar o servidor e testar com `curl` antes de considerar pronto.
 
+---
+
+### 2.16 — Nil Interface Revisão (B.3) ❌ ABANDONADO
+
+**Arquivos:** `16-nil-interface-revisao/README.md`, `16-nil-interface-revisao/perguntas.md`
+
+| Item | Detalhe |
+|------|---------|
+| **Conceitos** | Interface par (type, value), falso positivo err != nil, reflect.ValueOf.IsNil, type assertion |
+| **Motivo** | Conceito ainda não internalizado. Retornar quando houver disposição para revisitar com calma. |
+| **Próximo passo sugerido** | Praticar outros desafios de Go e voltar a este quando o `par (type, value)` soar mais natural |
+
 ### Ranking por frequencia
 
 | # | Erro | Exercicios onde apareceu | Por que acontece |
@@ -806,6 +818,9 @@ learnings/
 │       ├── go.mod
 │       ├── main.go
 │       └── product/{store,products}.go
+│   └── 16-nil-interface-revisao/  ← Exercicio B.3 (nil interface gotcha) ❌ ABANDONADO
+│       ├── README.md
+│       └── perguntas.md
 │
 ├── typescript/                 ← Futuros exercícios TS
 └── dsa/                        ← Revisoes pendentes de DSA
