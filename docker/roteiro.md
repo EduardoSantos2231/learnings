@@ -28,7 +28,7 @@
 | 01 | hello-world | `docker run`, imagem vs container, `docker ps`, `docker rm`, `docker start` | ✅ |
 | 02 | interactive-shell | `-i`/`-t`, `docker exec`, PID 1, isolamento de processos, `docker start -ai` | ✅ |
 | 03 | my-first-dockerfile | `Dockerfile` (`FROM`, `WORKDIR`, `COPY`, `RUN`, `CMD`), `docker build`, layers | ✅ (pende desafio extra ENTRYPOINT) |
-| 03b | entrypoint-vs-cmd | `ENTRYPOINT`, CMD como default args, argumentos em runtime | ⬜ |
+| 03b | entrypoint-vs-cmd | `ENTRYPOINT`, CMD como default args, argumentos em runtime | 🔄 |
 | 04 | dockerignore-layers | `.dockerignore`, ordem de layers, cache de build, redução de tamanho | ⬜ |
 | 05 | volumes-bind | Bind mount vs volume, persistência de dados, `docker volume` | ⬜ |
 | 06 | networking | `docker network`, bridge, comunicação entre containers, DNS interno | ⬜ |
