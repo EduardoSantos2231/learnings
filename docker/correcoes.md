@@ -74,3 +74,34 @@ Assim o alvo `google.com` é default substituível, e flags como `-c 4` são inj
 - Entendeu `ENTRYPOINT` como programa fixo e `CMD` como argumento default
 - Testou na prática com `cat` e confirmou os comportamentos
 - Q1, Q2, Q4 respondidas corretamente de primeira
+
+---
+
+## 04 — dockerignore-layers
+
+### Q1 — "veria mas seriam ignorados"
+
+**Sua resposta:** "o docker não veria os arquivos que inserimos no `.dockerignore` para serem copiados - veria mas seriam ignorados"
+
+**Correção:** Contradição nos termos. O `.dockerignore` não funciona como "vê e ignora" — ele **filtra os arquivos do build context antes** de enviar ao Docker daemon. O Docker nunca "vê" esses arquivos. Mais preciso: o `.dockerignore` remove arquivos do tarball do build context, então o `COPY . .` nem encontra os arquivos ignorados para copiar.
+
+### Q3 — explicação genérica sobre layers
+
+**Sua resposta:** "camadas são construídas uma em cima da outra... Se a camada 3 foi alterada o docker força a re-execução da instrução 4"
+
+**Correção:** A intuição está correta mas genérica. O mecanismo: cada instrução do `Dockerfile` gera uma camada (diff layer). O Docker calcula um **hash** do conteúdo da camada. Se o conteúdo muda (ex: `COPY` traz arquivo modificado), o hash muda → aquela camada e **todas as posteriores** são reconstruídas. É por isso que a ordem importa: colocar instruções estáveis (apt, curl) antes evita rebuild caro.
+
+### Q4 — ENTRYPOINT
+
+**Sua resposta:** "ENTRYPOINT -> defina o ponto de alterada"
+
+**Correção:** "ponto de alterada" é typo de "ponto de entrada". Mais importante: não explicou a função do `ENTRYPOINT`. O `ENTRYPOINT` define o **executável fixo** do container — é o programa que roda quando o container inicia. O `CMD` vira argumento default para esse executável (quando combinados). Sem `ENTRYPOINT`, o `CMD` é o comando inteiro e é **substituído** por argumentos do `docker run`, não concatenado.
+
+### ✅ Acertos
+
+- Dockerfile com `rm -rf /var/lib/apt/lists/*` no mesmo `RUN` do `apt-get install`
+- `.dockerignore` com `node_modules/`, `*.log`, `.git` — cobertura correta
+- Respostas Q5 e Q6 corretas
+- Percebeu sozinho a diferença de ~100KB com e sem `.dockerignore`
+- Reorganizou o `COPY` de `COPY . .` para `COPY ["./index.html", "."]` — copia seletivo
+- Resposta Q7 correta: mesmo `RUN` evita layers separadas

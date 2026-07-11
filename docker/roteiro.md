@@ -29,7 +29,7 @@
 | 02 | interactive-shell | `-i`/`-t`, `docker exec`, PID 1, isolamento de processos, `docker start -ai` | ✅ |
 | 03 | my-first-dockerfile | `Dockerfile` (`FROM`, `WORKDIR`, `COPY`, `RUN`, `CMD`), `docker build`, layers | ✅ |
 | 03b | entrypoint-vs-cmd | `ENTRYPOINT`, CMD como default args, argumentos em runtime | ✅ |
-| 04 | dockerignore-layers | `.dockerignore`, ordem de layers, cache de build, redução de tamanho | ⬜ |
+| 04 | dockerignore-layers | `.dockerignore`, ordem de layers, cache de build, redução de tamanho | ✅ |
 | 05 | volumes-bind | Bind mount vs volume, persistência de dados, `docker volume` | ⬜ |
 | 06 | networking | `docker network`, bridge, comunicação entre containers, DNS interno | ⬜ |
 | 07 | compose-simple | `docker-compose.yml` com 2 serviços, `depends_on`, variáveis de ambiente | ⬜ |
