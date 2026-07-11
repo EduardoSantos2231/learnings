@@ -21,6 +21,10 @@ Roteiro completo em [roteiro.md](./roteiro.md).
 | 13 | products-api | HTTP CRUD, ServeMux, RWMutex, middleware |
 | 14 | nil-interface-gotcha | interface (type, value) pair, nil pointer vs nil interface, reflect |
 | 15 | middleware-chain | Middleware chain, Logger, Recoverer, Auth, CORS |
+| 16 | select-sem-default | select sem default, send como case, cancelamento ctx.Done() |
+| 17 | error-is-as | errors.Is vs errors.As, valor sentinela vs tipo, %w wrapping |
+| 18 | slice-leak | Slice backing array, memory leak em Pop vs Dequeue |
+| 19 | nil-interface-revisao | Interface (type, value) pair, nil pointer vs nil interface |
 
 
 ## Para retomar

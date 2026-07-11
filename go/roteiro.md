@@ -493,6 +493,9 @@
 | 15 | **Status code errado p/ erro do cliente (500 → 400)** | D.1, D.2 | `strconv.Atoi` parsing invalido nao e erro do servidor — repetiu o erro do D.1 |
 | 16 | **Campo JSON nao exportado (letra minuscula)** | D.1, D.2 | `message string` — `json.Encode` ignora campos privados — repetiu o erro do D.1 |
 | 17 | **Codificar solucao e nao usa-la** (chain ignorado) | D.2 | Criou `chain()` mas passou wrapping manual pro `ListenAndServe` |
+| 18 | **errors.Is vs errors.As invertido** (confundiu qual faz o quê) | Reparo 3.2 | Disse que `Is` é "confirmar se erro é de um tipo" (é `As`) |
+| 19 | **Slice memory leak** (não sabia por que Pop zera mas Dequeue não) | Reparo 3.3 | Não entendeu que backing array retém referências mesmo após `s = s[1:]` |
+| 20 | **Nil interface par (type, value) impreciso** | Reparo 3.4 | Sabe o fenômeno mas linguagem confusa sobre type vs value |
 
 ### Padroes conceituais ja internalizados
 
@@ -504,6 +507,63 @@
 | `gracefulShutdown` com goroutine separada | Padrao repetido em 1.3, 1.4, 1.5 |
 | `select` com `ctx.Done()` como case | Todos os exercicios com timeout |
 | Struct private + constructor publico | `bankAccount` + `NewBankAccount` |
+
+---
+
+## 3. Exercícios de Reparo Planejados
+
+Exercícios criados após avaliação conceitual para lacunas identificadas nos tópicos abaixo.
+
+### 3.1 — select-sem-default (Reparo: Q2/Q9)
+
+**Arquivos:** `16-select-sem-default/`
+
+| Item | Detalhe |
+|------|---------|
+| **Conceitos** | `select` sem `default`, send como `case`, cancelamento com `ctx.Done()`, fan-in cancelável |
+| **Lacuna** | Erro #3 do ranking (select com default contendo send bloqueante) — não curado. O aluno confunde send no `default` (non-blocking + send fora do select) com send no `case` (cancelável). |
+| **Objetivo** | Escrever `sendOrCancel[T]` e `fanInCancelable[T]` usando select **sem default**, com send como case. Comparar com versão non-cancelável. |
+
+### 3.2 — error-is-as (Reparo: Q4)
+
+**Arquivos:** `17-error-is-as/`
+
+| Item | Detalhe |
+|------|---------|
+| **Conceitos** | `errors.Is` (valor sentinela), `errors.As` (tipo), `%w` wrapping |
+| **Lacuna** | Aluno inverteu os papéis — disse que `Is` é "confirmar se erro é de um tipo" (isso é `As`) |
+| **Objetivo** | Implementar `processItem` com erros sentinela + tipado + wrapped, e `handleError` com `Is` e `As` lado a lado. |
+
+### 3.3 — slice-leak (Reparo: Q6)
+
+**Arquivos:** `18-slice-leak/`
+
+| Item | Detalhe |
+|------|---------|
+| **Conceitos** | Slice backing array, capacidade, memory leak em Pop vs Dequeue |
+| **Lacuna** | Aluno não sabia responder; buscou ajuda externa. Conceito de backing array + data pointer ainda não internalizado. |
+| **Objetivo** | Demonstrar com `s[:cap(s)]` que elementos "removidos" ainda estão no backing array. Implementar `pop`, `popSafe`, `dequeue`. |
+
+### 3.4 — nil-interface-revisao (Reativado: Q3)
+
+**Arquivos:** `19-nil-interface-revisao/`
+
+| Item | Detalhe |
+|------|---------|
+| **Conceitos** | Interface (type, value) pair, nil pointer vs nil interface, `reflect.ValueOf.IsNil` |
+| **Lacuna** | Exercício 16 abandonado. Linguagem imprecisa sobre o par (type, value). |
+| **Objetivo** | Re-escrever o programa do gotcha e explicar por escrito os 3 momentos do par (type, value). |
+
+### Ordem de execução sugerida
+
+```
+1. 16-select-sem-default  (fixa o padrão mais crítico)
+2. 17-error-is-as         (rápido, consolida)
+3. 18-slice-leak          (visual, experimental)
+4. 19-nil-interface-revisao (fechamento conceitual)
+```
+
+Após concluir os 4 reparos, voltar ao roteiro progressivo normal: A.3 → B.4 → C.4 → D.3/D.4.
 
 ---
 
@@ -682,6 +742,7 @@ Projetos que juntam tudo: HTTP + concorrencia + estruturas de dados + testes.
 ## 5. Ordem Sugerida de Execucao
 
 ```
+Semana R:  16-select-sem-default + 17-error-is-as + 18-slice-leak + 19-nil-interface-revisao  ← REPAROS
 Semana 1:  A.1 (Rate Limiter) + C.1 (Linked List)
 Semana 2:  B.1 (Shape interface) + C.2 (Stack/Queue)
 Semana 3:  B.2 (Reader/Writer) + C.3 (BST) ✅
@@ -695,6 +756,8 @@ Semana 10: F.2 (Todo API) ou F.3 (Chat SSE)
 ```
 
 > Intercale modulos para nao enjoar: sempre junte 1 exercicio de estruturas + 1 de concorrencia + 1 de HTTP por semana.
+>
+> **Semana R:** executar os 4 reparos antes de prosseguir. A ordem importa — fazer na sequência listada.
 
 ---
 
@@ -819,6 +882,18 @@ learnings/
 │       ├── main.go
 │       └── product/{store,products}.go
 │   └── 16-nil-interface-revisao/  ← Exercicio B.3 (nil interface gotcha) ❌ ABANDONADO
+│       ├── README.md
+│       └── perguntas.md
+│   └── 16-select-sem-default/     ← Reparo 3.1 (select sem default)
+│       ├── README.md
+│       └── perguntas.md
+│   └── 17-error-is-as/            ← Reparo 3.2 (errors.Is vs errors.As)
+│       ├── README.md
+│       └── perguntas.md
+│   └── 18-slice-leak/             ← Reparo 3.3 (slice backing array)
+│       ├── README.md
+│       └── perguntas.md
+│   └── 19-nil-interface-revisao/  ← Reparo 3.4 (reativado)
 │       ├── README.md
 │       └── perguntas.md
 │
