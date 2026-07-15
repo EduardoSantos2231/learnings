@@ -105,3 +105,26 @@ Assim o alvo `google.com` é default substituível, e flags como `-c 4` são inj
 - Percebeu sozinho a diferença de ~100KB com e sem `.dockerignore`
 - Reorganizou o `COPY` de `COPY . .` para `COPY ["./index.html", "."]` — copia seletivo
 - Resposta Q7 correta: mesmo `RUN` evita layers separadas
+
+---
+
+## 05 — volumes-bind
+
+### Dockerfile desnecessário e com problemas
+
+**Problema:** Criou Dockerfile com `apt-get update` sem `apt-get install` — a instrução atualiza o índice de pacotes mas não instala nada, gerando uma camada inútil. Usou `ubuntu:latest` em vez de uma versão específica.
+
+**Correção:** O desafio não exigia Dockerfile — podia usar `docker run -it ubuntu bash` direto. Se fosse criar um, evitar `latest` e só rodar `apt-get` quando necessário.
+
+### Tarefa 1 incompleta
+
+**Problema:** Mostrou criar o arquivo dentro do container mas não provou que ele **some** após remover o container.
+
+**Correção:** O passo que faltou: sair do container → `docker rm` → novo container → mostrar que o arquivo não existe mais. Sem isso, a tarefa não demonstra que dados morrem com o container.
+
+### ✅ Acertos
+
+- Respostas Q2, Q3, Q4 corretas de primeira
+- Testou bind mount na prática (ler e escrever do host + container)
+- Testou volume nomeado com `docker volume create`
+- Q1 após revisão: diferença entre bind mount e volume + cenários corretos

@@ -137,3 +137,51 @@ return false
 **Problema:** Resposta explicou Vary corretamente mas não concluiu se é recomendado.
 
 **Correção:** Não é recomendado. `Vary: Origin` serve para variar o cache por origem quando o servidor reflete o valor do `Origin` request header (ex: `Access-Control-Allow-Origin: https://example.com`). Com `*` (permite todas as origens), a resposta não varia — `Vary: Origin` é desnecessário e prejudica o cache.
+
+---
+
+## 17 — error-is-as (Reparo 3.2)
+
+### Código: Type param errado no `errors.AsType`
+
+**Problema:** `errors.AsType[ValidationError](err)` — a type assertion `err.(ValidationError)` falha porque `processItem` retorna `&ValidationError{}` (ponteiro).
+
+**Correção:** `errors.AsType[*ValidationError](err)` — o tipo precisa casar: `*ValidationError` em vez de `ValidationError`.
+
+### Respostas conceituais
+
+#### Q3 — `errors.Is` vs `errors.As`
+
+**Problema inicial:** Disse que `Is` serve para "saber se houve um tipo de erro" — isso é o papel do `As`.
+
+**Correção:** `errors.Is` verifica **valores** sentinela (`ErrNotFound`, `io.EOF`). `errors.As` extrai **tipos** (`*ValidationError`).
+
+---
+
+## 18 — slice-leak (Reparo 3.3)
+
+### Código: `unsafePop[cap(unsafePop)]` em vez de `unsafePop[:cap(unsafePop)]`
+
+**Problema:** Tentou acessar índice `cap(unsafePop)` (=5) diretamente, mas o slice tem `len=3` — acesso fora do comprimento causa panic.
+
+**Correção:** `s[:cap(s)]` re-expande a janela do slice até a capacidade do backing array. É diferente de `s[cap(s)]` (índice único, estoura o len).
+
+### Código: `dequeue` implementado como `popSafe`
+
+**Problema:** Removeu o último elemento em vez do primeiro — copiou a função `popSafe` sem adaptar a lógica.
+
+**Correção:** `dequeue` deve fazer `s[1:]` e retornar `s[0]`.
+
+### Código: `popSafe` retornava valor zerado
+
+**Problema:** `s[lastIndex] = ""` era executado **antes** de salvar o valor, então o retorno era sempre `""`.
+
+**Correção:** Salvar o valor primeiro: `lastVal := s[lastIndex]`, depois zerar, depois retornar.
+
+### Respostas conceituais
+
+#### Q3 — GC e backing array
+
+**Problema:** Achou que o GC coleta elementos individuais do backing array.
+
+**Correção:** O GC coleta o **array inteiro** quando ninguém mais o referencia. Enquanto a slice existir, todo o backing array (incluindo elementos "removidos") permanece alocado. O `append` que estoura a capacidade aloca um novo array — só então o antigo pode ser coletado.

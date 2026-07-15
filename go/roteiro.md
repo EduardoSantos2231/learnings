@@ -496,6 +496,10 @@
 | 18 | **errors.Is vs errors.As invertido** (confundiu qual faz o quê) | Reparo 3.2 | Disse que `Is` é "confirmar se erro é de um tipo" (é `As`) |
 | 19 | **Slice memory leak** (não sabia por que Pop zera mas Dequeue não) | Reparo 3.3 | Não entendeu que backing array retém referências mesmo após `s = s[1:]` |
 | 20 | **Nil interface par (type, value) impreciso** | Reparo 3.4 | Sabe o fenômeno mas linguagem confusa sobre type vs value |
+| 21 | **`s[cap(s)]` em vez de `s[:cap(s)]`** | 18 | Confundir acesso por índice com re-slice para expandir janela do backing array |
+| 22 | **`dequeue` implementado como `popSafe`** | 18 | Removeu o último elemento em vez do primeiro — copiou código sem adaptar |
+| 23 | **`popSafe` retornava valor zerado** | 18 | Salvou o valor DEPOIS de zerar, em vez de antes — ordem errada das operações |
+| 24 | **`errors.AsType[V]` em vez de `[*V]`** | 17 | Type assertion `err.(ValidationError)` falha se err contém `*ValidationError` |
 
 ### Padroes conceituais ja internalizados
 
@@ -514,35 +518,38 @@
 
 Exercícios criados após avaliação conceitual para lacunas identificadas nos tópicos abaixo.
 
-### 3.1 — select-sem-default (Reparo: Q2/Q9)
+### 3.1 — select-sem-default (Reparo: Q2/Q9) ✅
 
 **Arquivos:** `16-select-sem-default/`
 
 | Item | Detalhe |
 |------|---------|
 | **Conceitos** | `select` sem `default`, send como `case`, cancelamento com `ctx.Done()`, fan-in cancelável |
-| **Lacuna** | Erro #3 do ranking (select com default contendo send bloqueante) — não curado. O aluno confunde send no `default` (non-blocking + send fora do select) com send no `case` (cancelável). |
+| **Lacuna** | Erro #3 do ranking (select com default contendo send bloqueante) — curado. |
 | **Objetivo** | Escrever `sendOrCancel[T]` e `fanInCancelable[T]` usando select **sem default**, com send como case. Comparar com versão non-cancelável. |
+| **Status** | ✅ Concluído. Respostas conceituais corretas. |
 
-### 3.2 — error-is-as (Reparo: Q4)
+### 3.2 — error-is-as (Reparo: Q4) ✅
 
 **Arquivos:** `17-error-is-as/`
 
 | Item | Detalhe |
 |------|---------|
 | **Conceitos** | `errors.Is` (valor sentinela), `errors.As` (tipo), `%w` wrapping |
-| **Lacuna** | Aluno inverteu os papéis — disse que `Is` é "confirmar se erro é de um tipo" (isso é `As`) |
+| **Lacuna** | Aluno inverteu os papéis — disse que `Is` é "confirmar se erro é de um tipo" (isso é `As`) — curado. |
 | **Objetivo** | Implementar `processItem` com erros sentinela + tipado + wrapped, e `handleError` com `Is` e `As` lado a lado. |
+| **Status** | ✅ Concluído. Usou `errors.AsType[*ValidationError]` corretamente (Go 1.26). |
 
-### 3.3 — slice-leak (Reparo: Q6)
+### 3.3 — slice-leak (Reparo: Q6) ✅
 
 **Arquivos:** `18-slice-leak/`
 
 | Item | Detalhe |
 |------|---------|
 | **Conceitos** | Slice backing array, capacidade, memory leak em Pop vs Dequeue |
-| **Lacuna** | Aluno não sabia responder; buscou ajuda externa. Conceito de backing array + data pointer ainda não internalizado. |
+| **Lacuna** | Aluno não sabia responder; buscou ajuda externa. Conceito de backing array + data pointer ainda não internalizado — curado. |
 | **Objetivo** | Demonstrar com `s[:cap(s)]` que elementos "removidos" ainda estão no backing array. Implementar `pop`, `popSafe`, `dequeue`. |
+| **Status** | ✅ Concluído. Código funcional + respostas corretas. |
 
 ### 3.4 — nil-interface-revisao (Reativado: Q3)
 
@@ -742,7 +749,7 @@ Projetos que juntam tudo: HTTP + concorrencia + estruturas de dados + testes.
 ## 5. Ordem Sugerida de Execucao
 
 ```
-Semana R:  16-select-sem-default + 17-error-is-as + 18-slice-leak + 19-nil-interface-revisao  ← REPAROS
+Semana R:  16-select-sem-default ✅ + 17-error-is-as ✅ + 18-slice-leak ✅ + 19-nil-interface-revisao ⬜  ← REPAROS (3/4 concluídos)
 Semana 1:  A.1 (Rate Limiter) + C.1 (Linked List)
 Semana 2:  B.1 (Shape interface) + C.2 (Stack/Queue)
 Semana 3:  B.2 (Reader/Writer) + C.3 (BST) ✅
@@ -757,7 +764,7 @@ Semana 10: F.2 (Todo API) ou F.3 (Chat SSE)
 
 > Intercale modulos para nao enjoar: sempre junte 1 exercicio de estruturas + 1 de concorrencia + 1 de HTTP por semana.
 >
-> **Semana R:** executar os 4 reparos antes de prosseguir. A ordem importa — fazer na sequência listada.
+> **Semana R:** 3/4 concluídos. Finalizar `19-nil-interface-revisao` antes de prosseguir.
 
 ---
 

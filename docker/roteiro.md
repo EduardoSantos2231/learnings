@@ -30,7 +30,7 @@
 | 03 | my-first-dockerfile | `Dockerfile` (`FROM`, `WORKDIR`, `COPY`, `RUN`, `CMD`), `docker build`, layers | ✅ |
 | 03b | entrypoint-vs-cmd | `ENTRYPOINT`, CMD como default args, argumentos em runtime | ✅ |
 | 04 | dockerignore-layers | `.dockerignore`, ordem de layers, cache de build, redução de tamanho | ✅ |
-| 05 | volumes-bind | Bind mount vs volume, persistência de dados, `docker volume` | ⬜ |
+| 05 | volumes-bind | Bind mount vs volume, persistência de dados, `docker volume` | ✅ |
 | 06 | networking | `docker network`, bridge, comunicação entre containers, DNS interno | ⬜ |
 | 07 | compose-simple | `docker-compose.yml` com 2 serviços, `depends_on`, variáveis de ambiente | ⬜ |
 
@@ -64,6 +64,9 @@
 | # | Erro | Desafio | Por que acontece |
 |---|---|---|---|
 | 1 | `/temp/` em vez de `/tmp/` | 02 | Confundir diretório temporário do Linux |
+| 2 | `apt-get update` sem `apt-get install` (inócuo) | 05 | Apenas atualiza o índice de pacotes, não instala nada — camada inútil na imagem |
+| 3 | `ubuntu:latest` sem versão fixa | 05 | Quebra de reproducibilidade: `latest` muda com o tempo |
+| 4 | Tarefa 1 incompleta: só criou arquivo dentro do container, não provou que some após `docker rm` | 05 | Esqueceu de demonstrar a parte principal do exercício |
 
 ---
 
