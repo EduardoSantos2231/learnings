@@ -1,0 +1,3 @@
+hello from outside
+
+i've changed the file
