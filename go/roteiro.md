@@ -472,6 +472,28 @@
 | **Motivo** | Conceito ainda não internalizado. Retornar quando houver disposição para revisitar com calma. |
 | **Próximo passo sugerido** | Praticar outros desafios de Go e voltar a este quando o `par (type, value)` soar mais natural |
 
+### 2.17 — Nil Interface Revisão (reativado, Reparo 3.4) ✅
+
+**Arquivos:** `19-nil-interface-revisao/main.go`, `19-nil-interface-revisao/respostas.md`
+
+| Item | Detalhe |
+|------|---------|
+| **Conceitos** | Interface par (type, value), falso positivo err != nil, reflect.ValueOf.IsNil, type assertion, safeWrite com verificação de Kind |
+| **Histórico** | Reativado após o exercício 16 ter sido abandonado. Aluno revisitou com compreensão mais sólida do par (type, value). |
+
+**✅ O que funcionou bem:**
+- Q1 corrigido: pares (type, value) nos 3 momentos (`var w io.Writer`, `w = buf`, `w.Write`) — type e value corretos em cada um
+- Q3 segundo caso: exemplo concreto com `writeSomething(b io.Writer)` passando `*bytes.Buffer` nil — captura o gotcha da interface
+- `safeWrite` com switch de `Kind` antes de `IsNil()` — implementação correta
+- Entendimento internalizado: interface nil exige type **e** value nil
+
+**⚠️ Erros encontrados e corrigidos:**
+- Q1: Resposta inicial usou cenário próprio (`signer`) em vez do `io.Writer` pedido e não deu os pares explicitamente
+- Q1b: `w = buf` descrito como "type nil pointer" (é `*bytes.Buffer`) e "value pointer para bytes.buffer" (é `nil`)
+- `main.go`: `*buf` antes de `w = buf` crashava o programa — linha reposicionada
+- `safeWrite`: assinatura `*io.Writer` em vez de `io.Writer` — corrigido
+- Q3 segundo caso: descreveu panic de ponteiro nil (`*b` com `b = nil`) em vez do gotcha da interface — corrigido para `writeSomething(b io.Writer)`
+
 ### Ranking por frequencia
 
 | # | Erro | Exercicios onde apareceu | Por que acontece |
@@ -551,15 +573,16 @@ Exercícios criados após avaliação conceitual para lacunas identificadas nos 
 | **Objetivo** | Demonstrar com `s[:cap(s)]` que elementos "removidos" ainda estão no backing array. Implementar `pop`, `popSafe`, `dequeue`. |
 | **Status** | ✅ Concluído. Código funcional + respostas corretas. |
 
-### 3.4 — nil-interface-revisao (Reativado: Q3)
+### 3.4 — nil-interface-revisao (Reativado: Q3) ✅
 
 **Arquivos:** `19-nil-interface-revisao/`
 
 | Item | Detalhe |
 |------|---------|
 | **Conceitos** | Interface (type, value) pair, nil pointer vs nil interface, `reflect.ValueOf.IsNil` |
-| **Lacuna** | Exercício 16 abandonado. Linguagem imprecisa sobre o par (type, value). |
+| **Lacuna** | Exercício 16 abandonado. Linguagem imprecisa sobre o par (type, value) — curado. |
 | **Objetivo** | Re-escrever o programa do gotcha e explicar por escrito os 3 momentos do par (type, value). |
+| **Status** | ✅ Concluído. Pares (type, value) corretos. Q3 com exemplos reais (error + io.Writer). |
 
 ### Ordem de execução sugerida
 
@@ -749,7 +772,7 @@ Projetos que juntam tudo: HTTP + concorrencia + estruturas de dados + testes.
 ## 5. Ordem Sugerida de Execucao
 
 ```
-Semana R:  16-select-sem-default ✅ + 17-error-is-as ✅ + 18-slice-leak ✅ + 19-nil-interface-revisao ⬜  ← REPAROS (3/4 concluídos)
+Semana R:  16-select-sem-default ✅ + 17-error-is-as ✅ + 18-slice-leak ✅ + 19-nil-interface-revisao ✅  ← REPAROS (4/4 concluídos)
 Semana 1:  A.1 (Rate Limiter) + C.1 (Linked List)
 Semana 2:  B.1 (Shape interface) + C.2 (Stack/Queue)
 Semana 3:  B.2 (Reader/Writer) + C.3 (BST) ✅
@@ -900,7 +923,7 @@ learnings/
 │   └── 18-slice-leak/             ← Reparo 3.3 (slice backing array)
 │       ├── README.md
 │       └── perguntas.md
-│   └── 19-nil-interface-revisao/  ← Reparo 3.4 (reativado)
+│   └── 19-nil-interface-revisao/  ← Reparo 3.4 (reativado) ✅
 │       ├── README.md
 │       └── perguntas.md
 │
