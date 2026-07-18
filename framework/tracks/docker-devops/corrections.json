@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "challenge": "D1",
+      "category": "docker-basics",
+      "error": "Confusao entre docker run e docker start — run cria container novo"
+    },
+    {
+      "challenge": "D3",
+      "category": "dockerfile-order",
+      "error": "Layer de COPY antes de RUN apt-get — cache invalida desnecessariamente"
+    }
+  ]
+}

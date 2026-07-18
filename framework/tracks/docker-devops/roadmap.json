@@ -1,0 +1,194 @@
+{
+  "track": "docker-devops",
+  "current_module": "",
+  "modules": [
+    {
+      "id": "modulo-1-containers",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "D1",
+          "name": "hello-world",
+          "template": "implementacao",
+          "concepts": [
+            "docker run",
+            "imagem vs container",
+            "docker ps"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D2",
+          "name": "interactive-shell",
+          "template": "implementacao",
+          "concepts": [
+            "-it flags",
+            "docker exec",
+            "PID 1"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D3",
+          "name": "first-dockerfile",
+          "template": "implementacao",
+          "concepts": [
+            "Dockerfile",
+            "FROM",
+            "COPY",
+            "CMD"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D4",
+          "name": "entrypoint-cmd",
+          "template": "implementacao",
+          "concepts": [
+            "ENTRYPOINT",
+            "argumentos em runtime"
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "modulo-2-build",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "D5",
+          "name": "dockerignore-layers",
+          "template": "otimizacao",
+          "concepts": [
+            ".dockerignore",
+            "ordem de layers",
+            "cache"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D6",
+          "name": "multi-stage",
+          "template": "implementacao",
+          "concepts": [
+            "multi-stage builds",
+            "reducao de tamanho"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "D7",
+          "name": "healthcheck",
+          "template": "implementacao",
+          "concepts": [
+            "HEALTHCHECK",
+            "restart policies"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-3-persistencia",
+      "scaffolding": "medio",
+      "challenges": [
+        {
+          "id": "D8",
+          "name": "volumes-bind",
+          "template": "implementacao",
+          "concepts": [
+            "bind mount",
+            "named volume",
+            "persistencia"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D9",
+          "name": "docker-networks",
+          "template": "implementacao",
+          "concepts": [
+            "bridge",
+            "DNS interno"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "D10",
+          "name": "docker-compose",
+          "template": "implementacao",
+          "concepts": [
+            "docker-compose.yml",
+            "services"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "D11",
+          "name": "compose-multi",
+          "template": "design",
+          "concepts": [
+            "multiplos servicos",
+            "volumes",
+            "networks"
+          ],
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "mixed_practice": [
+    {
+      "id": "MP1",
+      "name": "diagnostico-containers",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP2",
+      "name": "otimizacao-dockerfile",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    }
+  ],
+  "capstones": [
+    {
+      "id": "C1",
+      "name": "container-multi",
+      "template": "capstone",
+      "concepts": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "C2",
+      "name": "imagem-producao",
+      "template": "capstone",
+      "concepts": [
+        "D5",
+        "D6",
+        "D7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "C3",
+      "name": "stack-completa",
+      "template": "capstone",
+      "concepts": [
+        "D8",
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "status": "pending"
+    }
+  ]
+}
