@@ -1,0 +1,50 @@
+{
+  "title": "Clean Architecture",
+  "author": "Robert C. Martin",
+  "category": "technical",
+  "total_chapters": 7,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Cap\u00edtulo 1",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 2,
+      "title": "Cap\u00edtulo 2",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 3,
+      "title": "Cap\u00edtulo 3",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 4,
+      "title": "Cap\u00edtulo 4",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 5,
+      "title": "Cap\u00edtulo 5",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 6,
+      "title": "Cap\u00edtulo 6",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 7,
+      "title": "Cap\u00edtulo 7",
+      "status": "done",
+      "read_at": "2025-01-01"
+    }
+  ]
+}

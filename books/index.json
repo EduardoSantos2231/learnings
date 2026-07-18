@@ -1,5 +1,5 @@
 {
-  "current_book": "technological-slavery",
+  "current_book": "moral-letters-to-lucilius",
   "books": [
     {
       "slug": "technological-slavery",
@@ -16,6 +16,54 @@
       "total_chapters": 214,
       "chapters_read": 76,
       "category": "philosophy"
+    },
+    {
+      "slug": "a-metamorfose",
+      "title": "A Metamorfose",
+      "author": "Franz Kafka",
+      "total_chapters": 3,
+      "chapters_read": 3,
+      "category": "fiction"
+    },
+    {
+      "slug": "data-structures-algorithms",
+      "title": "A Common-Sense Guide to Data Structures and Algorithms",
+      "author": "Jay Wengrow",
+      "total_chapters": 14,
+      "chapters_read": 14,
+      "category": "technical"
+    },
+    {
+      "slug": "clean-architecture",
+      "title": "Clean Architecture",
+      "author": "Robert C. Martin",
+      "total_chapters": 7,
+      "chapters_read": 7,
+      "category": "technical"
+    },
+    {
+      "slug": "sex-at-dawn",
+      "title": "Sex at Dawn",
+      "author": "Ryan \u0026 Jethá",
+      "total_chapters": 22,
+      "chapters_read": 22,
+      "category": "history"
+    },
+    {
+      "slug": "tudo-o-que-quiser",
+      "title": "Tudo o Que Quiser é Seu",
+      "author": "Neville Goddard",
+      "total_chapters": 1,
+      "chapters_read": 1,
+      "category": "self-help"
+    },
+    {
+      "slug": "vidas-secas",
+      "title": "Vidas Secas",
+      "author": "Graciliano Ramos",
+      "total_chapters": 13,
+      "chapters_read": 13,
+      "category": "fiction"
     }
   ]
 }

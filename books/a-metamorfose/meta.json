@@ -1,0 +1,26 @@
+{
+  "title": "A Metamorfose",
+  "author": "Franz Kafka",
+  "category": "fiction",
+  "total_chapters": 3,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Cap\u00edtulo 1",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 2,
+      "title": "Cap\u00edtulo 2",
+      "status": "done",
+      "read_at": "2025-01-01"
+    },
+    {
+      "number": 3,
+      "title": "Cap\u00edtulo 3",
+      "status": "done",
+      "read_at": "2025-01-01"
+    }
+  ]
+}
