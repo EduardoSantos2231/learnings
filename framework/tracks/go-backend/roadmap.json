@@ -1,0 +1,331 @@
+{
+  "track": "go-backend",
+  "current_module": "",
+  "modules": [
+    {
+      "id": "modulo-A-fundamentos",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "A1",
+          "name": "currency-conversor",
+          "template": "implementacao",
+          "concepts": [
+            "CLI",
+            "sentinel errors",
+            "errors.Is"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "A2",
+          "name": "bank-account",
+          "template": "implementacao",
+          "concepts": [
+            "pointer receiver",
+            "erro tipado",
+            "errors.As"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "A3",
+          "name": "linked-list",
+          "template": "implementacao",
+          "concepts": [
+            "ponteiros",
+            "nil seguro",
+            "Remove/Reverse"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "A4",
+          "name": "shape-interface",
+          "template": "implementacao",
+          "concepts": [
+            "interface implicita",
+            "type switch"
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "modulo-B-concorrencia",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "B1",
+          "name": "worker-pool",
+          "template": "implementacao",
+          "concepts": [
+            "goroutines",
+            "channels",
+            "WaitGroup",
+            "context"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "B2",
+          "name": "parallel-query",
+          "template": "debug",
+          "concepts": [
+            "fan-in simples",
+            "time.Duration"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "B3",
+          "name": "fan-in",
+          "template": "implementacao",
+          "concepts": [
+            "select multi-canal",
+            "merger",
+            "graceful shutdown"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "B4",
+          "name": "rate-limiter",
+          "template": "implementacao",
+          "concepts": [
+            "sync.Mutex",
+            "token bucket"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "B5",
+          "name": "select-sem-default",
+          "template": "otimizacao",
+          "concepts": [
+            "select sem default",
+            "ctx.Done()"
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "modulo-C-estruturas",
+      "scaffolding": "medio",
+      "challenges": [
+        {
+          "id": "C1",
+          "name": "stack-queue",
+          "template": "explicacao",
+          "concepts": [
+            "thread-safe",
+            "pub/priv split"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "C2",
+          "name": "io-reader-writer",
+          "template": "implementacao",
+          "concepts": [
+            "io.Reader/Writer",
+            "delegacao",
+            "io.Copy"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "C3",
+          "name": "bst",
+          "template": "implementacao",
+          "concepts": [
+            "arvore binaria",
+            "recursao",
+            "Delete 3 casos"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "C4",
+          "name": "error-is-as",
+          "template": "debug",
+          "concepts": [
+            "errors.Is vs errors.As",
+            "%w wrapping"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "C5",
+          "name": "slice-leak",
+          "template": "debug",
+          "concepts": [
+            "backing array",
+            "memory leak"
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "modulo-D-http-apis",
+      "scaffolding": "medio",
+      "challenges": [
+        {
+          "id": "D1",
+          "name": "cache-ttl",
+          "template": "design",
+          "concepts": [
+            "RWMutex",
+            "lazy eviction",
+            "cleanup goroutine"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D2",
+          "name": "products-api",
+          "template": "implementacao",
+          "concepts": [
+            "HTTP CRUD",
+            "ServeMux",
+            "middleware"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "D3",
+          "name": "middleware-chain",
+          "template": "implementacao",
+          "concepts": [
+            "Logger",
+            "Recoverer",
+            "Auth",
+            "CORS"
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "modulo-E-armadilhas",
+      "scaffolding": "baixo",
+      "challenges": [
+        {
+          "id": "E1",
+          "name": "nil-interface",
+          "template": "debug",
+          "concepts": [
+            "interface (type, value) pair",
+            "nil pointer vs nil interface"
+          ],
+          "status": "done"
+        },
+        {
+          "id": "E2",
+          "name": "nil-interface-revisao",
+          "template": "explicacao",
+          "concepts": [
+            "revisao aprofundada"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  ],
+  "mixed_practice": [
+    {
+      "id": "MP1",
+      "name": "escolha-ferramentas",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP2",
+      "name": "padrao-concorrencia",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP3",
+      "name": "estrutura-certa",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP4",
+      "name": "debugging-apis",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    }
+  ],
+  "capstones": [
+    {
+      "id": "C1",
+      "name": "calculadora",
+      "template": "capstone",
+      "concepts": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "C2",
+      "name": "crawler",
+      "template": "capstone",
+      "concepts": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "C3",
+      "name": "cache-persistente",
+      "template": "capstone",
+      "concepts": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "C4",
+      "name": "api-blog",
+      "template": "capstone",
+      "concepts": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "C5",
+      "name": "auditoria",
+      "template": "capstone",
+      "concepts": [
+        "E1",
+        "E2",
+        "C5",
+        "B5",
+        "C4"
+      ],
+      "status": "pending"
+    }
+  ]
+}

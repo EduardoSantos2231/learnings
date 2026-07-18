@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "challenge": "A2",
+      "category": "errors-wrapping",
+      "error": "Uso de == em vez de errors.Is para comparar erro wrappeado"
+    },
+    {
+      "challenge": "A3",
+      "category": "nil-pointer",
+      "error": "Acesso a campo de node nil sem verificacao previa"
+    },
+    {
+      "challenge": "B4",
+      "category": "concurrency-mutex",
+      "error": "Mutex copiado por valor ao passar struct para funcao"
+    }
+  ]
+}
