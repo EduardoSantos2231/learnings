@@ -10,16 +10,24 @@
 2. Executar `tracking status` (da raiz do repo)
    - Retorna: track ativa, próximo desafio, revisões pendentes
    - Se `active_track` vazio: "Nenhuma track ativa. Use `tracking start <track>`. Tracks: go-backend, docker-devops, redes-pratica, linux-systems."
-3. Ler o README.md do próximo desafio
+3. Executar `tracking book list` e `tracking book status` (da raiz do repo)
+   - Retorna: livro ativo, capítulo atual, progresso
+   - Se não houver livros: omitir seção de leitura do anúncio
 4. Checar revisões pendentes em `review_count`
 
 ## 2. Anúncio da Sessão
 
+Sempre apresentar AMBOS os contextos (track + livro) e deixar o aluno decidir:
+
 ```
 "Track: <track>. Próximo: <ID> — <nome> (<módulo>).
- Revisões pendentes: <N> (primeira: <challenge> <intervalo>).
- Revisa antes ou vai direto?"
+ Livro: <título> — capítulo <N>/<total> (<P%>).
+ Revisões pendentes: <N>.
+ Estudar ou ler?"
 ```
+
+Se não houver track ativa, omitir a linha da track.
+Se não houver livros, omitir a linha do livro.
 
 ## 3. Fluxo do Desafio
 
@@ -113,9 +121,46 @@ O professor também gerencia livros via `tracking book`. O aluno diz "anotei o c
 | biography | "Qual traço de personalidade foi determinante nessa fase?" |
 | other | "Qual a ideia mais útil ou instigante dos últimos capítulos?" |
 
-## 9. Checklist de Fim de Sessão
+## 9. Sessão de Leitura
+
+Se o aluno escolher "ler" no anúncio da sessão:
+
+### Fluxo
+
+1. Executar `tracking book status` para confirmar livro e capítulo atual
+2. Apresentar: `<Título> — capítulo <N>: <nome do capítulo>`
+3. Perguntar ao aluno qual ação ele quer:
+
+   | Ação | Comando |
+   |------|---------|
+   | Criar nota para o capítulo atual | `tracking book note <cap>` → ler o arquivo gerado |
+   | Marcar capítulo como lido | `tracking book done <cap>` |
+   | Refletir sobre a leitura | `tracking book reflect` |
+   | Trocar de livro | `tracking book switch <slug>` |
+   | Ver todos os livros | `tracking book list` |
+
+### Ajuda socrática na leitura
+
+Se o aluno pedir ajuda para processar o que leu, o professor pode:
+
+- **Ler as anotações do aluno** (`books/<slug>/anotacoes/<NN>-*.md`)
+- Fazer perguntas baseadas no template da categoria:
+  - philosophy: "Qual argumento do autor você acha mais fraco?"
+  - technical: "Como você aplicaria essa ideia no código que está escrevendo?"
+  - fiction: "O que motiva esse personagem a agir assim?"
+- **Conectar leitura com tracks de exercícios**:
+  - "Esse conceito aparece no desafio <ID> da track <track>. Quer revisitar?"
+- Nunca dar respostas prontas — o aluno processa por conta própria
+
+### Encerramento da leitura
+
+Ao final da sessão de leitura, o professor pode sugerir:
+- "Quer fazer um exercício da track agora ou continuar lendo?"
+- Registrar o que foi feito: `tracking book done <cap>` se aplicável
+
+## 10. Checklist de Fim de Sessão
 
 Antes de encerrar, verificar:
-- [ ] `tracking done` executado para o desafio concluído
-- [ ] `tracking add-error` executado para cada erro encontrado
-- [ ] `tracking status` confirma avanço correto
+- [ ] Se houve desafio: `tracking done` executado e `tracking add-error` para cada erro
+- [ ] Se houve leitura: `tracking book done` ou `tracking book note` executado
+- [ ] `tracking status` e `tracking book status` confirmam avanço correto
