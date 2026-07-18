@@ -1,0 +1,213 @@
+{
+  "track": "redes-pratica",
+  "current_module": "",
+  "modules": [
+    {
+      "id": "modulo-1-sockets",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "R1",
+          "name": "echo-server",
+          "template": "implementacao",
+          "concepts": [
+            "net.Listen",
+            "net.Dial",
+            "TCP handshake"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R2",
+          "name": "chat-tcp",
+          "template": "implementacao",
+          "concepts": [
+            "goroutines por conexao",
+            "broadcast"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R3",
+          "name": "udp-echo",
+          "template": "implementacao",
+          "concepts": [
+            "net.ListenUDP",
+            "datagramas"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R4",
+          "name": "timeout-retry",
+          "template": "otimizacao",
+          "concepts": [
+            "deadline",
+            "retry",
+            "buffer sizing"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-2-http",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "R5",
+          "name": "http-parser",
+          "template": "implementacao",
+          "concepts": [
+            "parse HTTP/1.1",
+            "method",
+            "headers",
+            "body"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R6",
+          "name": "http-server",
+          "template": "implementacao",
+          "concepts": [
+            "servidor HTTP",
+            "resposta GET",
+            "rotas"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R7",
+          "name": "keep-alive",
+          "template": "design",
+          "concepts": [
+            "conexoes persistentes"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R8",
+          "name": "chunked",
+          "template": "implementacao",
+          "concepts": [
+            "Transfer-Encoding: chunked"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-3-dns",
+      "scaffolding": "medio",
+      "challenges": [
+        {
+          "id": "R9",
+          "name": "dns-wire",
+          "template": "implementacao",
+          "concepts": [
+            "query DNS",
+            "wire format"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R10",
+          "name": "dns-resolver",
+          "template": "implementacao",
+          "concepts": [
+            "resolucao iterativa",
+            "root → TLD"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R11",
+          "name": "dns-cache",
+          "template": "design",
+          "concepts": [
+            "cache respostas",
+            "TTL"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-4-tls",
+      "scaffolding": "medio",
+      "challenges": [
+        {
+          "id": "R12",
+          "name": "certs",
+          "template": "explicacao",
+          "concepts": [
+            "X.509",
+            "CA root",
+            "cadeia confianca"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R13",
+          "name": "tls-server",
+          "template": "implementacao",
+          "concepts": [
+            "crypto/tls",
+            "certificado"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "R14",
+          "name": "tls-mitm",
+          "template": "debug",
+          "concepts": [
+            "proxy MITM",
+            "certificado on-the-fly"
+          ],
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "mixed_practice": [
+    {
+      "id": "MP1",
+      "name": "tcp-vs-udp",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP2",
+      "name": "cliente-http",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP3",
+      "name": "debugging-dns",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    }
+  ],
+  "capstones": [
+    {
+      "id": "C1",
+      "name": "proxy-http",
+      "template": "capstone",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "C2",
+      "name": "netcat-tls",
+      "template": "capstone",
+      "concepts": null,
+      "status": "pending"
+    }
+  ]
+}
