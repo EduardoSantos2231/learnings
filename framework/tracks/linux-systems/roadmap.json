@@ -1,0 +1,218 @@
+{
+  "track": "linux-systems",
+  "current_module": "",
+  "modules": [
+    {
+      "id": "modulo-1-processos",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "L1",
+          "name": "spawn-wait",
+          "template": "implementacao",
+          "concepts": [
+            "spawn processo",
+            "wait",
+            "exit code"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L2",
+          "name": "signals",
+          "template": "implementacao",
+          "concepts": [
+            "SIGTERM",
+            "SIGINT",
+            "graceful shutdown"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L3",
+          "name": "daemon",
+          "template": "design",
+          "concepts": [
+            "fork",
+            "setsid",
+            "chdir"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L4",
+          "name": "zombies",
+          "template": "debug",
+          "concepts": [
+            "zumbis",
+            "wait",
+            "PPID"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-2-fd-io",
+      "scaffolding": "alto",
+      "challenges": [
+        {
+          "id": "L5",
+          "name": "pipes",
+          "template": "implementacao",
+          "concepts": [
+            "pipe",
+            "pai↔filho"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L6",
+          "name": "redirection",
+          "template": "implementacao",
+          "concepts": [
+            "dup2",
+            "stdin/stdout/stderr"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L7",
+          "name": "poll-select",
+          "template": "design",
+          "concepts": [
+            "select",
+            "epoll",
+            "FDs multiplos"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-3-filesystem",
+      "scaffolding": "medio",
+      "challenges": [
+        {
+          "id": "L8",
+          "name": "walk",
+          "template": "implementacao",
+          "concepts": [
+            "walk recursivo",
+            "permissoes",
+            "tipos"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L9",
+          "name": "proc",
+          "template": "explicacao",
+          "concepts": [
+            "/proc",
+            "PID",
+            "mem",
+            "fds"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L10",
+          "name": "inode",
+          "template": "debug",
+          "concepts": [
+            "inodes",
+            "hardlink vs symlink"
+          ],
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "modulo-4-mini-shell",
+      "scaffolding": "baixo",
+      "challenges": [
+        {
+          "id": "L11",
+          "name": "parser",
+          "template": "implementacao",
+          "concepts": [
+            "tokenizer",
+            "AST simples"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L12",
+          "name": "execution",
+          "template": "implementacao",
+          "concepts": [
+            "PATH lookup",
+            "builtins"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L13",
+          "name": "pipes-shell",
+          "template": "implementacao",
+          "concepts": [
+            "pipes no shell"
+          ],
+          "status": "pending"
+        },
+        {
+          "id": "L14",
+          "name": "redirect-shell",
+          "template": "implementacao",
+          "concepts": [
+            "\u003e",
+            "\u003c",
+            "2\u003e",
+            "2\u003e\u00261"
+          ],
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "mixed_practice": [
+    {
+      "id": "MP1",
+      "name": "gerenciamento-processos",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP2",
+      "name": "tee-tail",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "MP3",
+      "name": "ferramenta-find",
+      "template": "mixed-practice",
+      "concepts": null,
+      "status": "pending"
+    }
+  ],
+  "capstones": [
+    {
+      "id": "C1",
+      "name": "tee-tail",
+      "template": "capstone",
+      "concepts": null,
+      "status": "pending"
+    },
+    {
+      "id": "C2",
+      "name": "shell",
+      "template": "capstone",
+      "concepts": null,
+      "status": "pending"
+    }
+  ]
+}
