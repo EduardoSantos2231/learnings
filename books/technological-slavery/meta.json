@@ -1,0 +1,82 @@
+{
+  "title": "Technological Slavery",
+  "author": "Theodore J. Kaczynski",
+  "category": "philosophy",
+  "total_chapters": 13,
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Se\u00e7\u00e3o 1",
+      "status": "done",
+      "read_at": "2026-07-01"
+    },
+    {
+      "number": 2,
+      "title": "Se\u00e7\u00e3o 2",
+      "status": "done",
+      "read_at": "2026-07-03"
+    },
+    {
+      "number": 3,
+      "title": "Se\u00e7\u00e3o 3",
+      "status": "done",
+      "read_at": "2026-07-05"
+    },
+    {
+      "number": 4,
+      "title": "Se\u00e7\u00e3o 4",
+      "status": "done",
+      "read_at": "2026-07-07"
+    },
+    {
+      "number": 5,
+      "title": "Se\u00e7\u00e3o 5",
+      "status": "done",
+      "read_at": "2026-07-09"
+    },
+    {
+      "number": 6,
+      "title": "Se\u00e7\u00e3o 6",
+      "status": "done",
+      "read_at": "2026-07-11"
+    },
+    {
+      "number": 7,
+      "title": "Se\u00e7\u00e3o 7",
+      "status": "done",
+      "read_at": "2026-07-13"
+    },
+    {
+      "number": 8,
+      "title": "Se\u00e7\u00e3o 8",
+      "status": "done",
+      "read_at": "2026-07-15"
+    },
+    {
+      "number": 9,
+      "title": "Se\u00e7\u00e3o 9",
+      "status": "done",
+      "read_at": "2026-07-17"
+    },
+    {
+      "number": 10,
+      "title": "Se\u00e7\u00e3o 10",
+      "status": "reading"
+    },
+    {
+      "number": 11,
+      "title": "Se\u00e7\u00e3o 11",
+      "status": "pending"
+    },
+    {
+      "number": 12,
+      "title": "Se\u00e7\u00e3o 12",
+      "status": "pending"
+    },
+    {
+      "number": 13,
+      "title": "Se\u00e7\u00e3o 13",
+      "status": "pending"
+    }
+  ]
+}

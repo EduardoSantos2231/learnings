@@ -1,0 +1,21 @@
+{
+  "current_book": "technological-slavery",
+  "books": [
+    {
+      "slug": "technological-slavery",
+      "title": "Technological Slavery",
+      "author": "Theodore J. Kaczynski",
+      "total_chapters": 13,
+      "chapters_read": 9,
+      "category": "philosophy"
+    },
+    {
+      "slug": "moral-letters-to-lucilius",
+      "title": "Moral Letters to Lucilius — Letters from a Stoic",
+      "author": "Seneca",
+      "total_chapters": 214,
+      "chapters_read": 76,
+      "category": "philosophy"
+    }
+  ]
+}
