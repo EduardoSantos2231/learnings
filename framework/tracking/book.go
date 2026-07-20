@@ -288,7 +288,11 @@ func bookNote(chNumber int) {
 	}
 
 	template := getTemplate(meta.Category, chNumber, ch.Title)
-	os.WriteFile(notePath, []byte(template), 0644)
+	if err := os.WriteFile(notePath, []byte(template), 0644); err != nil {
+		fmt.Printf(`{"error":"erro ao escrever arquivo: %v"}`, err)
+		fmt.Println()
+		return
+	}
 
 	if meta.Chapters[chNumber-1].Status == "pending" {
 		meta.Chapters[chNumber-1].Status = "reading"
@@ -445,6 +449,30 @@ func bookUpdate(slug, field, value string) {
 	}
 
 	saveBookIndex(idx)
+
+	meta, err := loadBookMeta(slug)
+	if err == nil {
+		switch field {
+		case "title":
+			meta.Title = value
+		case "author":
+			meta.Author = value
+		case "category":
+			meta.Category = value
+		case "total":
+			n, _ := strconv.Atoi(value)
+			if n != meta.TotalChapters {
+				chapters := make([]ChapterEntry, n)
+				for j := 0; j < n; j++ {
+					chapters[j] = ChapterEntry{Number: j + 1, Title: fmt.Sprintf("Capítulo %d", j+1), Status: "pending"}
+				}
+				meta.TotalChapters = n
+				meta.Chapters = chapters
+			}
+		}
+		saveBookMeta(slug, meta)
+	}
+
 	fmt.Println(`{"ok":true}`)
 }
 

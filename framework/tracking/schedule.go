@@ -86,32 +86,46 @@ func statusCmd() {
 var reviewOrder = []string{"1d", "3d", "7d", "30d"}
 
 func findActiveModule(r Roadmap) string {
-	for _, m := range r.Modules {
+	for mi, m := range r.Modules {
 		for _, c := range m.Challenges {
 			if c.Status == "pending" {
 				return m.ID
 			}
+		}
+		if mi < len(r.MixedPractice) && r.MixedPractice[mi].Status == "pending" {
+			return m.ID
+		}
+		if mi < len(r.Capstones) && r.Capstones[mi].Status == "pending" {
+			return m.ID
 		}
 	}
 	return r.Modules[len(r.Modules)-1].ID
 }
 
 func findNext(r Roadmap) *NextChallenge {
-	for _, m := range r.Modules {
+	for mi, m := range r.Modules {
 		for _, c := range m.Challenges {
 			if c.Status == "pending" {
 				return &NextChallenge{ID: c.ID, Name: c.Name, Module: m.ID, Type: "challenge"}
 			}
 		}
-	}
-	for _, mp := range r.MixedPractice {
-		if mp.Status == "pending" {
+		if mi < len(r.MixedPractice) && r.MixedPractice[mi].Status == "pending" {
+			mp := r.MixedPractice[mi]
 			return &NextChallenge{ID: mp.ID, Name: mp.Name, Module: "mixed-practice", Type: "mixed_practice"}
 		}
-	}
-	for _, cs := range r.Capstones {
-		if cs.Status == "pending" {
+		if mi < len(r.Capstones) && r.Capstones[mi].Status == "pending" {
+			cs := r.Capstones[mi]
 			return &NextChallenge{ID: cs.ID, Name: cs.Name, Module: "capstones", Type: "capstone"}
+		}
+	}
+	for i := len(r.Modules); i < len(r.MixedPractice); i++ {
+		if r.MixedPractice[i].Status == "pending" {
+			return &NextChallenge{ID: r.MixedPractice[i].ID, Name: r.MixedPractice[i].Name, Module: "mixed-practice", Type: "mixed_practice"}
+		}
+	}
+	for i := len(r.Modules); i < len(r.Capstones); i++ {
+		if r.Capstones[i].Status == "pending" {
+			return &NextChallenge{ID: r.Capstones[i].ID, Name: r.Capstones[i].Name, Module: "capstones", Type: "capstone"}
 		}
 	}
 	return nil

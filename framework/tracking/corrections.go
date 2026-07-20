@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 func reviewCmd(challengeID, interval, result string) {
@@ -13,7 +14,7 @@ func reviewCmd(challengeID, interval, result string) {
 	}
 
 	for i, r := range sched.Reviews {
-		if r.Challenge != challengeID {
+		if r.Track != sched.ActiveTrack || r.Challenge != challengeID {
 			continue
 		}
 		iv, ok := r.Intervals[interval]
@@ -24,6 +25,14 @@ func reviewCmd(challengeID, interval, result string) {
 		}
 		iv.Status = result
 		sched.Reviews[i].Intervals[interval] = iv
+
+		if result == "failed" {
+			today := time.Now()
+			sched.Reviews[i].Intervals["1d"] = Interval{Date: today.AddDate(0, 0, 1).Format("2006-01-02"), Status: "pending"}
+			sched.Reviews[i].Intervals["3d"] = Interval{Date: today.AddDate(0, 0, 3).Format("2006-01-02"), Status: "pending"}
+			sched.Reviews[i].Intervals["7d"] = Interval{Date: today.AddDate(0, 0, 7).Format("2006-01-02"), Status: "pending"}
+			sched.Reviews[i].Intervals["30d"] = Interval{Date: today.AddDate(0, 0, 30).Format("2006-01-02"), Status: "pending"}
+		}
 	}
 
 	if err := saveSchedule(sched); err != nil {
@@ -135,7 +144,7 @@ func renderRoadmapCmd() {
 	}
 
 	fmt.Printf("# Roadmap — %s\n\n", r.Track)
-	fmt.Println("## Módulos\n")
+	fmt.Println("## Módulos")
 	for _, m := range r.Modules {
 		fmt.Printf("### %s (%s)\n\n", m.ID, m.Scaffolding)
 		fmt.Println("| # | Desafio | Status |")
@@ -150,7 +159,8 @@ func renderRoadmapCmd() {
 		fmt.Println()
 	}
 	if len(r.MixedPractice) > 0 {
-		fmt.Println("## Mixed Practice\n")
+		fmt.Println("## Mixed Practice")
+	fmt.Println()
 		fmt.Println("| # | Desafio | Status |")
 		fmt.Println("|---|---------|--------|")
 		for _, mp := range r.MixedPractice {
@@ -163,7 +173,8 @@ func renderRoadmapCmd() {
 		fmt.Println()
 	}
 	if len(r.Capstones) > 0 {
-		fmt.Println("## Capstones\n")
+		fmt.Println("## Capstones")
+	fmt.Println()
 		fmt.Println("| # | Projeto | Status |")
 		fmt.Println("|---|---------|--------|")
 		for _, cs := range r.Capstones {
