@@ -12,6 +12,8 @@
 | docker-devops | false |
 | redes-pratica | false |
 | linux-systems | false |
+| typescript | false |
+| dsa | false |
 
 > Para começar uma track, peça ao professor: "Quero estudar <track>".
 > O professor fará o diagnóstico e marcará a track como ativa.
@@ -71,6 +73,22 @@
 ---
 
 ## Linux Systems
+
+| Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
+|---------|-----------|-----|-----|-----|------|--------|
+| — | — | — | — | — | — | Nenhum iniciado |
+
+---
+
+## TypeScript
+
+| Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
+|---------|-----------|-----|-----|-----|------|--------|
+| — | — | — | — | — | — | Nenhum iniciado |
+
+---
+
+## DSA
 
 | Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
 |---------|-----------|-----|-----|-----|------|--------|

@@ -15,7 +15,7 @@
             "net.Dial",
             "TCP handshake"
           ],
-          "status": "pending"
+          "status": "done"
         },
         {
           "id": "R2",
