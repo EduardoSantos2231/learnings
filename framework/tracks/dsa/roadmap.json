@@ -1,0 +1,63 @@
+{
+  "track": "dsa",
+  "modules": [
+    {
+      "id": "modulo-1-arrays",
+      "scaffolding": "alto",
+      "challenges": [
+        {"id": "D1", "name": "two-pointers", "template": "implementacao", "concepts": ["two pointers", "in-place", "O(n)"], "status": "pending"},
+        {"id": "D2", "name": "sliding-window", "template": "implementacao", "concepts": ["janela deslizante", "O(n)", "subarray"], "status": "pending"},
+        {"id": "D3", "name": "prefix-sum", "template": "implementacao", "concepts": ["prefix sum array", "range query O(1)"], "status": "pending"},
+        {"id": "D4", "name": "string-search", "template": "otimizacao", "concepts": ["busca em string", "KMP intro", "O(n+m)"], "status": "pending"}
+      ]
+    },
+    {
+      "id": "modulo-2-estruturas",
+      "scaffolding": "alto",
+      "challenges": [
+        {"id": "D5", "name": "linked-list-full", "template": "implementacao", "concepts": ["singly/doubly", "reverse", "merge", "detect cycle"], "status": "pending"},
+        {"id": "D6", "name": "stack-queue-impl", "template": "implementacao", "concepts": ["array-based", "linked-based", "thread-safe"], "status": "pending"},
+        {"id": "D7", "name": "deque", "template": "implementacao", "concepts": ["double-ended queue", "circular buffer"], "status": "pending"},
+        {"id": "D8", "name": "lru-cache", "template": "design", "concepts": ["LRU", "doubly linked list", "hash map", "O(1)"], "status": "pending"}
+      ]
+    },
+    {
+      "id": "modulo-3-arvores",
+      "scaffolding": "medio",
+      "challenges": [
+        {"id": "D9", "name": "bst-full", "template": "implementacao", "concepts": ["insert", "search", "delete 3 casos", "successor"], "status": "pending"},
+        {"id": "D10", "name": "tree-traversals", "template": "implementacao", "concepts": ["pre/in/post", "BFS/DFS", "iterativo", "recursivo"], "status": "pending"},
+        {"id": "D11", "name": "heap", "template": "implementacao", "concepts": ["min-heap", "heapify", "heap sort"], "status": "pending"},
+        {"id": "D12", "name": "trie", "template": "implementacao", "concepts": ["trie", "insert", "search", "prefix"], "status": "pending"}
+      ]
+    },
+    {
+      "id": "modulo-4-grafos",
+      "scaffolding": "medio",
+      "challenges": [
+        {"id": "D13", "name": "graph-repr", "template": "implementacao", "concepts": ["adjacency list", "adjacency matrix", "edge list"], "status": "pending"},
+        {"id": "D14", "name": "bfs-dfs", "template": "implementacao", "concepts": ["BFS iterativo", "DFS recursive/iterative", "connected components"], "status": "pending"},
+        {"id": "D15", "name": "dijkstra", "template": "implementacao", "concepts": ["shortest path", "priority queue", "greedy"], "status": "pending"},
+        {"id": "D16", "name": "topological-sort", "template": "implementacao", "concepts": ["Kahn algorithm", "DFS-based", "DAG"], "status": "pending"}
+      ]
+    },
+    {
+      "id": "modulo-5-algoritmos",
+      "scaffolding": "baixo",
+      "challenges": [
+        {"id": "D17", "name": "sorting", "template": "implementacao", "concepts": ["merge sort", "quick sort", "heap sort", "complexity"], "status": "pending"},
+        {"id": "D18", "name": "binary-search", "template": "otimizacao", "concepts": ["lower/upper bound", "rotated array", "binary answer"], "status": "pending"},
+        {"id": "D19", "name": "backtracking", "template": "implementacao", "concepts": ["n-queens", "subsets", "permutations", "pruning"], "status": "pending"},
+        {"id": "D20", "name": "dp-intro", "template": "explicacao", "concepts": ["memoization", "tabulation", "coin change", "knapsack"], "status": "pending"}
+      ]
+    }
+  ],
+  "mixed_practice": [
+    {"id": "MP1", "name": "estrutura-certa", "template": "mixed-practice", "status": "pending"},
+    {"id": "MP2", "name": "algoritmo-certo", "template": "mixed-practice", "status": "pending"}
+  ],
+  "capstones": [
+    {"id": "C1", "name": "cache-persistente", "template": "capstone", "concepts": ["LRU", "heap", "BST"], "status": "pending"},
+    {"id": "C2", "name": "roteador-caminhos", "template": "capstone", "concepts": ["graph", "Dijkstra", "trie"], "status": "pending"}
+  ]
+}

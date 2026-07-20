@@ -12,6 +12,8 @@ func initAllCmd() {
 	writeDockerDevops()
 	writeRedesPratica()
 	writeLinuxSystems()
+	writeTypeScript()
+	writeDSA()
 	fmt.Println("gerando corrections.json...")
 	writeCorrections("go-backend", []CorrectionEntry{
 		{Challenge: "A2", Category: "errors-wrapping", Error: "Uso de == em vez de errors.Is para comparar erro wrappeado"},
@@ -24,6 +26,8 @@ func initAllCmd() {
 	})
 	writeCorrections("redes-pratica", nil)
 	writeCorrections("linux-systems", nil)
+	writeCorrections("typescript", nil)
+	writeCorrections("dsa", nil)
 	fmt.Println("gerando schedule.json...")
 	s := Schedule{ActiveTrack: "redes-pratica", Reviews: []Review{}}
 	writeJSON(basePath()+"/spaced-repetition/schedule.json", s)
@@ -212,4 +216,84 @@ func writeLinuxSystems() {
 		},
 	}
 	writeJSON(basePath()+"/framework/tracks/linux-systems/roadmap.json", r)
+}
+
+func writeTypeScript() {
+	r := Roadmap{
+		Track: "typescript",
+		Modules: []Module{
+			{ID: "modulo-1-tipos", Scaffolding: "alto", Challenges: []Challenge{
+				{ID: "TS1", Name: "generics-constraints", Template: "implementacao", Concepts: []string{"extends", "keyof", "infer"}, Status: "pending"},
+				{ID: "TS2", Name: "conditional-types", Template: "implementacao", Concepts: []string{"conditional types", "never", "distributive"}, Status: "pending"},
+				{ID: "TS3", Name: "mapped-types", Template: "implementacao", Concepts: []string{"mapped types", "template literals", "as clause"}, Status: "pending"},
+				{ID: "TS4", Name: "utility-types", Template: "explicacao", Concepts: []string{"Partial", "Required", "Pick", "Omit", "Readonly"}, Status: "pending"},
+			}},
+			{ID: "modulo-2-padroes", Scaffolding: "medio", Challenges: []Challenge{
+				{ID: "TS5", Name: "discriminated-unions", Template: "implementacao", Concepts: []string{"union discriminada", "never check", "exhaustive"}, Status: "pending"},
+				{ID: "TS6", Name: "branded-types", Template: "design", Concepts: []string{"opaque types", "type branding", "nominal"}, Status: "pending"},
+				{ID: "TS7", Name: "builder-pattern", Template: "implementacao", Concepts: []string{"type-safe builder", "fluent API", "chaining"}, Status: "pending"},
+				{ID: "TS8", Name: "result-either", Template: "implementacao", Concepts: []string{"Result type", "Either", "match", "unwrap"}, Status: "pending"},
+			}},
+			{ID: "modulo-3-type-level", Scaffolding: "baixo", Challenges: []Challenge{
+				{ID: "TS9", Name: "type-challenges-1", Template: "otimizacao", Concepts: []string{"type-challenges easy/medium", "recursive types"}, Status: "pending"},
+				{ID: "TS10", Name: "type-challenges-2", Template: "debug", Concepts: []string{"type-challenges hard", "conditional recursion"}, Status: "pending"},
+				{ID: "TS11", Name: "sdk-typed", Template: "design", Concepts: []string{"SDK design", "user-facing types", "DX"}, Status: "pending"},
+			}},
+		},
+		MixedPractice: []Challenge{
+			{ID: "MP1", Name: "tipos-avancados", Template: "mixed-practice", Status: "pending"},
+			{ID: "MP2", Name: "padroes-reais", Template: "mixed-practice", Status: "pending"},
+		},
+		Capstones: []Challenge{
+			{ID: "C1", Name: "sdk-fortemente-tipada", Template: "capstone", Concepts: []string{"TS1-TS11"}, Status: "pending"},
+		},
+	}
+	writeJSON(basePath()+"/framework/tracks/typescript/roadmap.json", r)
+}
+
+func writeDSA() {
+	r := Roadmap{
+		Track: "dsa",
+		Modules: []Module{
+			{ID: "modulo-1-arrays", Scaffolding: "alto", Challenges: []Challenge{
+				{ID: "D1", Name: "two-pointers", Template: "implementacao", Concepts: []string{"two pointers", "in-place", "O(n)"}, Status: "pending"},
+				{ID: "D2", Name: "sliding-window", Template: "implementacao", Concepts: []string{"janela deslizante", "subarray", "O(n)"}, Status: "pending"},
+				{ID: "D3", Name: "prefix-sum", Template: "implementacao", Concepts: []string{"prefix sum array", "range query O(1)"}, Status: "pending"},
+				{ID: "D4", Name: "string-search", Template: "otimizacao", Concepts: []string{"busca em string", "KMP intro"}, Status: "pending"},
+			}},
+			{ID: "modulo-2-estruturas", Scaffolding: "alto", Challenges: []Challenge{
+				{ID: "D5", Name: "linked-list-full", Template: "implementacao", Concepts: []string{"singly/doubly", "reverse", "merge", "detect cycle"}, Status: "pending"},
+				{ID: "D6", Name: "stack-queue-impl", Template: "implementacao", Concepts: []string{"array-based", "linked-based", "thread-safe"}, Status: "pending"},
+				{ID: "D7", Name: "deque", Template: "implementacao", Concepts: []string{"double-ended queue", "circular buffer"}, Status: "pending"},
+				{ID: "D8", Name: "lru-cache", Template: "design", Concepts: []string{"LRU", "doubly linked list", "hash map", "O(1)"}, Status: "pending"},
+			}},
+			{ID: "modulo-3-arvores", Scaffolding: "medio", Challenges: []Challenge{
+				{ID: "D9", Name: "bst-full", Template: "implementacao", Concepts: []string{"insert", "search", "delete 3 casos", "successor"}, Status: "pending"},
+				{ID: "D10", Name: "tree-traversals", Template: "implementacao", Concepts: []string{"pre/in/post", "BFS/DFS", "iterativo", "recursivo"}, Status: "pending"},
+				{ID: "D11", Name: "heap", Template: "implementacao", Concepts: []string{"min-heap", "heapify", "heap sort"}, Status: "pending"},
+				{ID: "D12", Name: "trie", Template: "implementacao", Concepts: []string{"trie", "insert", "search", "prefix"}, Status: "pending"},
+			}},
+			{ID: "modulo-4-grafos", Scaffolding: "medio", Challenges: []Challenge{
+				{ID: "D13", Name: "graph-repr", Template: "implementacao", Concepts: []string{"adjacency list", "adjacency matrix", "edge list"}, Status: "pending"},
+				{ID: "D14", Name: "bfs-dfs", Template: "implementacao", Concepts: []string{"BFS iterativo", "DFS recursive/iterative", "connected components"}, Status: "pending"},
+				{ID: "D15", Name: "dijkstra", Template: "implementacao", Concepts: []string{"shortest path", "priority queue", "greedy"}, Status: "pending"},
+				{ID: "D16", Name: "topological-sort", Template: "implementacao", Concepts: []string{"Kahn algorithm", "DFS-based", "DAG"}, Status: "pending"},
+			}},
+			{ID: "modulo-5-algoritmos", Scaffolding: "baixo", Challenges: []Challenge{
+				{ID: "D17", Name: "sorting", Template: "implementacao", Concepts: []string{"merge sort", "quick sort", "heap sort", "complexity"}, Status: "pending"},
+				{ID: "D18", Name: "binary-search", Template: "otimizacao", Concepts: []string{"lower/upper bound", "rotated array", "binary answer"}, Status: "pending"},
+				{ID: "D19", Name: "backtracking", Template: "implementacao", Concepts: []string{"n-queens", "subsets", "permutations", "pruning"}, Status: "pending"},
+				{ID: "D20", Name: "dp-intro", Template: "explicacao", Concepts: []string{"memoization", "tabulation", "coin change", "knapsack"}, Status: "pending"},
+			}},
+		},
+		MixedPractice: []Challenge{
+			{ID: "MP1", Name: "estrutura-certa", Template: "mixed-practice", Status: "pending"},
+			{ID: "MP2", Name: "algoritmo-certo", Template: "mixed-practice", Status: "pending"},
+		},
+		Capstones: []Challenge{
+			{ID: "C1", Name: "cache-persistente", Template: "capstone", Concepts: []string{"LRU", "heap", "BST"}, Status: "pending"},
+			{ID: "C2", Name: "roteador-caminhos", Template: "capstone", Concepts: []string{"graph", "Dijkstra", "trie"}, Status: "pending"},
+		},
+	}
+	writeJSON(basePath()+"/framework/tracks/dsa/roadmap.json", r)
 }

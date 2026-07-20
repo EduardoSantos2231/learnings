@@ -1,0 +1,41 @@
+{
+  "track": "typescript",
+  "modules": [
+    {
+      "id": "modulo-1-tipos",
+      "scaffolding": "alto",
+      "challenges": [
+        {"id": "TS1", "name": "generics-constraints", "template": "implementacao", "concepts": ["extends", "keyof", "infer"], "status": "pending"},
+        {"id": "TS2", "name": "conditional-types", "template": "implementacao", "concepts": ["conditional types", "never", "distributive"], "status": "pending"},
+        {"id": "TS3", "name": "mapped-types", "template": "implementacao", "concepts": ["mapped types", "template literals", "as clause"], "status": "pending"},
+        {"id": "TS4", "name": "utility-types", "template": "explicacao", "concepts": ["Partial", "Required", "Pick", "Omit", "Readonly"], "status": "pending"}
+      ]
+    },
+    {
+      "id": "modulo-2-padroes",
+      "scaffolding": "medio",
+      "challenges": [
+        {"id": "TS5", "name": "discriminated-unions", "template": "implementacao", "concepts": ["union discriminada", "never check", "exhaustive"], "status": "pending"},
+        {"id": "TS6", "name": "branded-types", "template": "design", "concepts": ["opaque types", "type branding", "nominal"], "status": "pending"},
+        {"id": "TS7", "name": "builder-pattern", "template": "implementacao", "concepts": ["type-safe builder", "fluent API", "chaining"], "status": "pending"},
+        {"id": "TS8", "name": "result-either", "template": "implementacao", "concepts": ["Result type", "Either", "match", "unwrap"], "status": "pending"}
+      ]
+    },
+    {
+      "id": "modulo-3-type-level",
+      "scaffolding": "baixo",
+      "challenges": [
+        {"id": "TS9", "name": "type-challenges-1", "template": "otimizacao", "concepts": ["type-challenges easy/medium", "recursive types"], "status": "pending"},
+        {"id": "TS10", "name": "type-challenges-2", "template": "debug", "concepts": ["type-challenges hard", "conditional recursion"], "status": "pending"},
+        {"id": "TS11", "name": "sdk-typed", "template": "design", "concepts": ["SDK design", "user-facing types", "DX"], "status": "pending"}
+      ]
+    }
+  ],
+  "mixed_practice": [
+    {"id": "MP1", "name": "tipos-avancados", "template": "mixed-practice", "status": "pending"},
+    {"id": "MP2", "name": "padroes-reais", "template": "mixed-practice", "status": "pending"}
+  ],
+  "capstones": [
+    {"id": "C1", "name": "sdk-fortemente-tipada", "template": "capstone", "concepts": ["TS1-TS11"], "status": "pending"}
+  ]
+}

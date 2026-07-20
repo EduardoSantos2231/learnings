@@ -9,7 +9,7 @@
 1. Ler `framework/metodo.md` (método de ensino)
 2. Executar `tracking status` (da raiz do repo)
    - Retorna: track ativa, próximo desafio, revisões pendentes
-   - Se `active_track` vazio: "Nenhuma track ativa. Use `tracking start <track>`. Tracks: go-backend, docker-devops, redes-pratica, linux-systems."
+   -    Se `active_track` vazio: "Nenhuma track ativa. Use `tracking start <track>`. Tracks: go-backend, docker-devops, redes-pratica, linux-systems, typescript, dsa."
 3. Executar `tracking book list` e `tracking book status` (da raiz do repo)
    - Retorna: livro ativo, capítulo atual, progresso
    - Se não houver livros: omitir seção de leitura do anúncio
