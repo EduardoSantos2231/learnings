@@ -1,0 +1,10 @@
+FROM golang:1.26-alpine
+
+WORKDIR /app/server
+
+#  copio tudo de vez, embora seja adequado dividir para melhor caching
+COPY server/ . 
+
+RUN go build -o serverBin .
+
+CMD [ "./serverBin" ]

@@ -23,6 +23,29 @@
           "status": "pending"
         }
       }
+    },
+    {
+      "track": "docker-devops",
+      "challenge": "D6",
+      "completed": "2026-07-22",
+      "intervals": {
+        "1d": {
+          "date": "2026-07-23",
+          "status": "pending"
+        },
+        "30d": {
+          "date": "2026-08-21",
+          "status": "pending"
+        },
+        "3d": {
+          "date": "2026-07-25",
+          "status": "pending"
+        },
+        "7d": {
+          "date": "2026-07-29",
+          "status": "pending"
+        }
+      }
     }
   ]
 }
