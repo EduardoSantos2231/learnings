@@ -9,7 +9,7 @@
 | Track | Ativa |
 |-------|-------|
 | go-backend | false |
-| docker-devops | false |
+| docker-devops | true |
 | redes-pratica | false |
 | linux-systems | false |
 | typescript | false |
@@ -24,27 +24,27 @@
 
 | Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
 |---------|-----------|-----|-----|-----|------|--------|
-| A1-currency-conversor | 2025-01-01 | ✅ | ✅ | ✅ | ✅ | Completo |
-| A2-bank-account | 2025-01-02 | ✅ | ✅ | ✅ | ✅ | Completo |
-| A3-linked-list | 2025-01-03 | ✅ | ✅ | ✅ | ✅ | Completo |
-| A4-shape-interface | 2025-01-04 | ✅ | ✅ | ✅ | ✅ | Completo |
-| B1-worker-pool | 2025-01-05 | ✅ | ✅ | ✅ | ✅ | Completo |
-| B2-parallel-query | 2025-01-06 | ✅ | ✅ | ✅ | ✅ | Completo |
-| B3-fan-in | 2025-01-07 | ✅ | ✅ | ✅ | ✅ | Completo |
-| B4-rate-limiter | 2025-01-08 | ✅ | ✅ | ✅ | ✅ | Completo |
-| B5-select-sem-default | 2025-01-09 | ✅ | ✅ | ✅ | ✅ | Completo |
-| C1-stack-queue | 2025-01-10 | ✅ | ✅ | ✅ | ✅ | Completo |
-| C2-io-reader-writer | 2025-01-11 | ✅ | ✅ | ✅ | ✅ | Completo |
-| C3-bst | 2025-01-12 | ✅ | ✅ | ✅ | ✅ | Completo |
-| C4-error-is-as | 2025-01-13 | ✅ | ✅ | ✅ | ✅ | Completo |
-| C5-slice-leak | 2025-01-14 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D1-cache-ttl | 2025-01-15 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D2-products-api | 2025-01-16 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D3-middleware-chain | 2025-01-17 | ✅ | ✅ | ✅ | ✅ | Completo |
-| E1-nil-interface | 2025-01-18 | ✅ | ✅ | ✅ | ✅ | Completo |
-| E2-nil-interface-revisao | 2025-01-19 | ✅ | ✅ | ✅ | ✅ | Completo |
+| A1-currency-conversor | 2025-01-01 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| A2-bank-account | 2025-01-02 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| A3-linked-list | 2025-01-03 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| A4-shape-interface | 2025-01-04 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| B1-worker-pool | 2025-01-05 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| B2-parallel-query | 2025-01-06 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| B3-fan-in | 2025-01-07 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| B4-rate-limiter | 2025-01-08 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| B5-select-sem-default | 2025-01-09 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| C1-stack-queue | 2025-01-10 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| C2-io-reader-writer | 2025-01-11 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| C3-bst | 2025-01-12 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| C4-error-is-as | 2025-01-13 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| C5-slice-leak | 2025-01-14 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D1-cache-ttl | 2025-01-15 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D2-products-api | 2025-01-16 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D3-middleware-chain | 2025-01-17 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| E1-nil-interface | 2025-01-18 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| E2-nil-interface-revisao | 2025-01-19 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
 
-> Todos os 19 exercícios concluídos. Revisões em dia.
+> Todos os 19 exercícios concluídos. 76 revisões pendentes (atrasadas — nunca revisadas).
 > Capstones (C1-C5) e Mixed Practices (MP1-MP4) pendentes como próximos passos.
 
 ---
@@ -53,14 +53,16 @@
 
 | Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
 |---------|-----------|-----|-----|-----|------|--------|
-| D1-hello-world | 2025-01-10 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D2-interactive-shell | 2025-01-11 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D3-first-dockerfile | 2025-01-12 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D4-entrypoint-cmd | 2025-01-13 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D5-dockerignore-layers | 2025-01-14 | ✅ | ✅ | ✅ | ✅ | Completo |
-| D8-volumes-bind | 2025-01-15 | ✅ | ✅ | ✅ | ✅ | Completo |
+| D1-hello-world | 2025-01-10 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D2-interactive-shell | 2025-01-11 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D3-first-dockerfile | 2025-01-12 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D4-entrypoint-cmd | 2025-01-13 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D5-dockerignore-layers | 2025-01-14 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D6-multi-stage | 2026-07-22 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D8-volumes-bind | 2025-01-15 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
 
-> 6 de 11 exercícios concluídos. Próximo: MP1 (Mixed Practice 1).
+> 7 de 11 exercícios concluídos. 28 revisões pendentes (25 vencidas; 3 futuras do D6).
+> Próximo: MP1 (Mixed Practice 1).
 
 ---
 
@@ -68,7 +70,10 @@
 
 | Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
 |---------|-----------|-----|-----|-----|------|--------|
-| — | — | — | — | — | — | Nenhum iniciado |
+| R1-echo-server | 2026-07-20 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+
+> 1 de 14 exercícios concluídos. 4 revisões pendentes (1d e 3d vencidas).
+> Próximo: R2-chat-tcp.
 
 ---
 

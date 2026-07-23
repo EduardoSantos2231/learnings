@@ -7,10 +7,10 @@
 
 | Campo | Valor |
 |-------|-------|
-| Módulo atual | A — Fundamentos |
-| Último concluído | — |
-| Próximo desafio | A1-currency-conversor |
-| Próximo formato | Implementação |
+| Módulo atual | Mixed Practice 1 |
+| Último concluído | E2-nil-interface-revisao |
+| Próximo desafio | MP1-escolha-ferramentas |
+| Próximo formato | Mixed Practice |
 
 ---
 

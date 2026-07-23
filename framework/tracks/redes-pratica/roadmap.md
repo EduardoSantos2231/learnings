@@ -8,8 +8,8 @@
 | Campo | Valor |
 |-------|-------|
 | Módulo atual | 1 — Sockets TCP/UDP |
-| Último concluído | — |
-| Próximo desafio | R1-echo-server |
+| Último concluído | R1-echo-server |
+| Próximo desafio | R2-chat-tcp |
 | Próximo formato | Implementação |
 
 ---
@@ -20,7 +20,7 @@
 
 | # | Desafio | Template | Conceitos | Status |
 |---|---------|----------|-----------|--------|
-| R1 | echo-server | Implementação | `net.Listen`, `net.Dial`, TCP handshake | ⬜ |
+| R1 | echo-server | Implementação | `net.Listen`, `net.Dial`, TCP handshake | ✅ |
 | R2 | chat-tcp | Implementação | Goroutines por conexão, broadcast | ⬜ |
 | R3 | udp-echo | Implementação | `net.ListenUDP`, datagramas, perda de pacotes | ⬜ |
 | R4 | timeout-retry | Otimização | Deadline, retry, buffer sizing | ⬜ |

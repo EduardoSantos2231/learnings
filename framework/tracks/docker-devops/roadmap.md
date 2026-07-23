@@ -7,9 +7,9 @@
 
 | Campo | Valor |
 |-------|-------|
-| Módulo atual | 1 — Contêineres e Imagens |
-| Último concluído | D4-entrypoint-cmd |
-| Próximo desafio | MP1 — Diagnóstico de Containers |
+| Módulo atual | Mixed Practice 1 |
+| Último concluído | D6-multi-stage |
+| Próximo desafio | MP1-diagnostico-containers |
 | Próximo formato | Mixed Practice |
 
 ---
@@ -46,7 +46,7 @@
 | # | Desafio | Template | Conceitos | Status |
 |---|---------|----------|-----------|--------|
 | D5 | dockerignore-layers | Otimização | `.dockerignore`, ordem de layers, cache de build | ✅ |
-| D6 | multi-stage | Implementação | Multi-stage builds, builder vs runtime, redução de tamanho | ⬜ |
+| D6 | multi-stage | Implementação | Multi-stage builds, builder vs runtime, redução de tamanho | ✅ |
 | D7 | healthcheck | Implementação | HEALTHCHECK, restart policies, `docker ps` status | ⬜ |
 
 ## Mixed Practice 2
