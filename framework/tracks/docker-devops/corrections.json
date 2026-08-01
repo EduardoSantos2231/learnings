@@ -9,6 +9,16 @@
       "challenge": "D3",
       "category": "dockerfile-order",
       "error": "Layer de COPY antes de RUN apt-get — cache invalida desnecessariamente"
+    },
+    {
+      "challenge": "D8",
+      "category": "volumes",
+      "error": "Bind mount mascara diretório da imagem (não erro, não merge)"
+    },
+    {
+      "challenge": "A1",
+      "category": "erros-is-as",
+      "error": "Confundiu quando usar errors.Is vs errors.As (mapping de valor vs tipo)"
     }
   ]
 }

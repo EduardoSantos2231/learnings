@@ -237,19 +237,19 @@
       "completed": "2025-01-10",
       "intervals": {
         "1d": {
-          "date": "2025-01-11",
+          "date": "2026-08-02",
           "status": "pending"
         },
         "30d": {
-          "date": "2025-02-09",
+          "date": "2026-08-31",
           "status": "pending"
         },
         "3d": {
-          "date": "2025-01-13",
+          "date": "2026-08-04",
           "status": "pending"
         },
         "7d": {
-          "date": "2025-01-17",
+          "date": "2026-08-08",
           "status": "pending"
         }
       }
@@ -284,7 +284,7 @@
       "intervals": {
         "1d": {
           "date": "2025-01-12",
-          "status": "pending"
+          "status": "passed"
         },
         "30d": {
           "date": "2025-02-10",
@@ -330,7 +330,7 @@
       "intervals": {
         "1d": {
           "date": "2025-01-13",
-          "status": "pending"
+          "status": "passed"
         },
         "30d": {
           "date": "2025-02-11",
@@ -376,7 +376,7 @@
       "intervals": {
         "1d": {
           "date": "2025-01-14",
-          "status": "pending"
+          "status": "passed"
         },
         "30d": {
           "date": "2025-02-12",
@@ -422,7 +422,7 @@
       "intervals": {
         "1d": {
           "date": "2025-01-15",
-          "status": "pending"
+          "status": "passed"
         },
         "30d": {
           "date": "2025-02-13",
@@ -468,7 +468,7 @@
       "intervals": {
         "1d": {
           "date": "2025-01-16",
-          "status": "pending"
+          "status": "passed"
         },
         "30d": {
           "date": "2025-02-14",
@@ -605,19 +605,19 @@
       "completed": "2026-07-22",
       "intervals": {
         "1d": {
-          "date": "2026-07-23",
+          "date": "2026-08-02",
           "status": "pending"
         },
         "30d": {
-          "date": "2026-08-21",
+          "date": "2026-08-31",
           "status": "pending"
         },
         "3d": {
-          "date": "2026-07-25",
+          "date": "2026-08-04",
           "status": "pending"
         },
         "7d": {
-          "date": "2026-07-29",
+          "date": "2026-08-08",
           "status": "pending"
         }
       }

@@ -24,8 +24,8 @@
 
 | Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
 |---------|-----------|-----|-----|-----|------|--------|
-| A1-currency-conversor | 2025-01-01 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| A2-bank-account | 2025-01-02 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| A1-currency-conversor | 2025-01-01 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
+| A2-bank-account | 2025-01-02 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
 | A3-linked-list | 2025-01-03 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
 | A4-shape-interface | 2025-01-04 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
 | B1-worker-pool | 2025-01-05 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
@@ -44,7 +44,7 @@
 | E1-nil-interface | 2025-01-18 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
 | E2-nil-interface-revisao | 2025-01-19 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
 
-> Todos os 19 exercícios concluídos. 76 revisões pendentes (atrasadas — nunca revisadas).
+> Todos os 19 exercícios concluídos. 68 revisões pendentes (A1/A2 revisados).
 > Capstones (C1-C5) e Mixed Practices (MP1-MP4) pendentes como próximos passos.
 
 ---
@@ -53,15 +53,15 @@
 
 | Desafio | Concluído | 1d | 3d | 7d | 30d | Status |
 |---------|-----------|-----|-----|-----|------|--------|
-| D1-hello-world | 2025-01-10 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| D2-interactive-shell | 2025-01-11 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| D3-first-dockerfile | 2025-01-12 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| D4-entrypoint-cmd | 2025-01-13 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| D5-dockerignore-layers | 2025-01-14 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| D6-multi-stage | 2026-07-22 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
-| D8-volumes-bind | 2025-01-15 | ⬜ | ⬜ | ⬜ | ⬜ | Pendente |
+| D1-hello-world | 2025-01-10 | ❌ | ⬜ | ⬜ | ⬜ | Ciclo reiniciado (1d) |
+| D2-interactive-shell | 2025-01-11 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
+| D3-first-dockerfile | 2025-01-12 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
+| D4-entrypoint-cmd | 2025-01-13 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
+| D5-dockerignore-layers | 2025-01-14 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
+| D6-multi-stage | 2026-07-22 | ❌ | ⬜ | ⬜ | ⬜ | Ciclo reiniciado (1d) |
+| D8-volumes-bind | 2025-01-15 | ✅ | ⬜ | ⬜ | ⬜ | ✅ (próx. 3d) |
 
-> 7 de 11 exercícios concluídos. 28 revisões pendentes (25 vencidas; 3 futuras do D6).
+> 7 de 11 exercícios concluídos. 15 revisões pendentes (4 passaram p/ 3d; D1/D6 reiniciaram 1d).
 > Próximo: MP1 (Mixed Practice 1).
 
 ---
