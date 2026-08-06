@@ -1,34 +1,32 @@
-# [NOME DO DESAFIO] — Otimização
+# [ID] — [NOME]
 
-> Template: Otimização | Você recebe código funcional mas ineficiente. Melhore sem quebrar.
+> Otimizacao | [minutos]
 
-## Contexto
+## Objetivo
 
-[O que o programa faz e por que a performance importa aqui]
+[Comportamento preservado e gargalo mensuravel.]
 
-## Código atual
+## Faca
 
-```go
-// [código funcional mas com problema de performance]
-```
+1. Rode o teste ou benchmark base.
+2. Identifique custo de tempo e memoria.
+3. Implemente a menor mudanca que melhore a medida.
+4. Compare antes e depois.
 
-## Tarefas
+## Pronto quando
 
-### Tarefa 1: Identifique o gargalo
+- O comportamento externo nao mudou.
+- A medida melhorou ou o trade-off foi justificado.
+- Testes e benchmark passam.
 
-- Qual a complexidade atual (tempo e espaço)?
-- Onde está o ponto quente?
-- Como você mediu? (benchmark, profiling, análise estática)
+## Restricoes
 
-### Tarefa 2: Otimize
+- Nao troque corretude por velocidade.
+- Nao adicione dependencia para substituir poucas linhas.
 
-Implemente uma versão mais eficiente. O comportamento externo deve ser idêntico.
+## Responda
 
-### Tarefa 3: Prove
+- Qual evidencia mostrou o gargalo?
+- Qual limite a otimizacao ainda possui?
 
-Escreva um benchmark comparando antes e depois. Qual o speedup?
-
-## Restrições
-
-- Comportamento externo não pode mudar
-- Se houver tradeoff (ex: mais memória por menos CPU), documente
+> Confianca: [1-5]

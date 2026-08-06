@@ -1,16 +1,17 @@
 # Roadmap — Go Backend
 
-> Track de Go do zero a APIs production-ready.
-> Siga a ordem. O professor anuncia o próximo automaticamente.
+> Espinha dorsal: Go do zero a APIs operáveis.
+> Cada sessão tem uma entrega pequena, um teste e uma explicação curta.
+> Use `tracking session`; ele alterna desafio novo e revisão prática.
 
 ## Posição atual
 
 | Campo | Valor |
 |-------|-------|
-| Módulo atual | Mixed Practice 1 |
-| Último concluído | E2-nil-interface-revisao |
-| Próximo desafio | MP1-escolha-ferramentas |
-| Próximo formato | Mixed Practice |
+| Módulo atual | definido pela CLI |
+| Último concluído | registrado pela CLI |
+| Próxima sessão | `tracking session` |
+| Próximo formato | desafio ou revisão prática |
 
 ---
 
@@ -167,3 +168,9 @@
 - ✅ Concluído
 - ⬜ Pendente
 - 🔄 Revisão pendente (spaced repetition)
+
+## Contrato dos enunciados
+
+Todo README de desafio informa objetivo, tarefas, restricoes, criterio de pronto
+e perguntas. O enunciado nao entrega a solucao, mas nunca deixa o comportamento
+esperado ou a forma de validacao em aberto.

@@ -5,13 +5,13 @@
 ## Como funciona
 
 ```
-Track → Diagnóstico → Módulos → Interleaving → Capstone → Revisão Espaçada
+Track → Diagnóstico → Desafios → Rotação → Capstone → Revisão Espaçada
 ```
 
 1. **Escolha uma track** (única decisão que você toma)
 2. **Diagnóstico inicial** — 5-10 perguntas para posicionar você no ponto certo do roadmap
-3. **Siga o roadmap** — cada sessão o professor anuncia o próximo desafio automaticamente
-4. **Revisões automáticas** — conceitos antigos reaparecem em intervalos programados (1d, 3d, 7d, 30d)
+3. **Inicie a sessão** — `tracking session` escolhe desafio ou revisão
+4. **Revisões progressivas** — blocos práticos reaparecem em 1d, 7d e 30d
 
 ## Formato de uma sessão típica
 
@@ -26,8 +26,8 @@ Professor: "Track: go-backend. Próximo: Módulo C — BST Delete.
 
 | Track | Status | Descrição |
 |-------|--------|-----------|
-| go-backend | Em migração | Go do zero a APIs production-ready |
-| docker-devops | Em migração | Contêineres, builds, redes, orquestração |
+| go-backend | Principal | Go do zero a APIs production-ready |
+| docker-devops | Complementar | Operar e empacotar os serviços Go |
 | redes-pratica | Nova | TCP/UDP, HTTP do zero, DNS, TLS |
 | linux-systems | Nova | Processos, sinais, FDs, shell mínimo |
 | dsa | Em revisão | Estruturas de dados e algoritmos |

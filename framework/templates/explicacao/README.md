@@ -1,29 +1,26 @@
-# [NOME DO DESAFIO] — Explicação
+# [ID] — [NOME]
 
-> Template: Explicação | Explique um conceito como se estivesse ensinando alguém.
-> Técnica de Feynman: se você não consegue explicar de forma simples, não entendeu.
+> Explicacao pratica | [minutos]
 
-## Conceito
+## Objetivo
 
-[Conceito a ser explicado]
+[Conceito que precisa ser explicado por meio de codigo executavel.]
 
-## Tarefas
+## Faca
 
-### Tarefa 1: Explicação em linguagem natural
+1. Explique o conceito em ate 150 palavras.
+2. Escreva um exemplo minimo que compile e rode.
+3. Mostre um caso que falha e explique por que.
 
-Explique o conceito como se estivesse ensinando um dev júnior. Use analogias.
-Máximo 300 palavras.
+## Pronto quando
 
-### Tarefa 2: Exemplo de código
+- O exemplo executa sem dependencia externa.
+- O caso normal e a armadilha estao demonstrados.
+- Outra pessoa consegue prever a saida.
 
-Escreva um exemplo mínimo (máximo 30 linhas) que demonstre o conceito na prática.
-O código deve compilar e rodar.
+## Responda
 
-### Tarefa 3: Armadilhas comuns
+- Qual intuicao costuma induzir ao erro?
+- Como o conceito aparece no desafio anterior?
 
-Liste os 3 erros mais comuns que devs cometem com esse conceito e como evitá-los.
-
-## Restrições
-
-- Tarefa 1: sem jargão desnecessário
-- Tarefa 2: código auto-contido, sem dependências externas
+> Confianca: [1-5]

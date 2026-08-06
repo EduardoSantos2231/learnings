@@ -1,10 +1,12 @@
 {
-  "active_track": "docker-devops",
+  "schema_version": 2,
+  "active_track": "go-backend",
   "reviews": [
     {
       "track": "go-backend",
       "challenge": "A1",
       "completed": "2025-01-01",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-02",
@@ -28,6 +30,7 @@
       "track": "go-backend",
       "challenge": "A2",
       "completed": "2025-01-02",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-03",
@@ -51,6 +54,7 @@
       "track": "go-backend",
       "challenge": "A3",
       "completed": "2025-01-03",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-04",
@@ -74,6 +78,7 @@
       "track": "go-backend",
       "challenge": "A4",
       "completed": "2025-01-04",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-05",
@@ -97,6 +102,7 @@
       "track": "go-backend",
       "challenge": "B1",
       "completed": "2025-01-05",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-06",
@@ -120,6 +126,7 @@
       "track": "go-backend",
       "challenge": "B2",
       "completed": "2025-01-06",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-07",
@@ -143,6 +150,7 @@
       "track": "go-backend",
       "challenge": "B3",
       "completed": "2025-01-07",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-08",
@@ -166,6 +174,7 @@
       "track": "go-backend",
       "challenge": "B4",
       "completed": "2025-01-08",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-09",
@@ -189,6 +198,7 @@
       "track": "go-backend",
       "challenge": "B5",
       "completed": "2025-01-09",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-10",
@@ -212,6 +222,7 @@
       "track": "go-backend",
       "challenge": "C1",
       "completed": "2025-01-10",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-11",
@@ -235,21 +246,22 @@
       "track": "docker-devops",
       "challenge": "D1",
       "completed": "2025-01-10",
+      "status": "archived",
       "intervals": {
         "1d": {
-          "date": "2026-08-02",
+          "date": "2026-08-05",
           "status": "pending"
         },
         "30d": {
-          "date": "2026-08-31",
+          "date": "2026-09-03",
           "status": "pending"
         },
         "3d": {
-          "date": "2026-08-04",
+          "date": "2026-08-07",
           "status": "pending"
         },
         "7d": {
-          "date": "2026-08-08",
+          "date": "2026-08-11",
           "status": "pending"
         }
       }
@@ -258,6 +270,7 @@
       "track": "go-backend",
       "challenge": "C2",
       "completed": "2025-01-11",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-12",
@@ -281,21 +294,22 @@
       "track": "docker-devops",
       "challenge": "D2",
       "completed": "2025-01-11",
+      "status": "archived",
       "intervals": {
         "1d": {
-          "date": "2025-01-12",
-          "status": "passed"
+          "date": "2026-08-05",
+          "status": "pending"
         },
         "30d": {
-          "date": "2025-02-10",
+          "date": "2026-09-03",
           "status": "pending"
         },
         "3d": {
-          "date": "2025-01-14",
+          "date": "2026-08-07",
           "status": "pending"
         },
         "7d": {
-          "date": "2025-01-18",
+          "date": "2026-08-11",
           "status": "pending"
         }
       }
@@ -304,6 +318,7 @@
       "track": "go-backend",
       "challenge": "C3",
       "completed": "2025-01-12",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-13",
@@ -327,6 +342,7 @@
       "track": "docker-devops",
       "challenge": "D3",
       "completed": "2025-01-12",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-13",
@@ -350,6 +366,7 @@
       "track": "go-backend",
       "challenge": "C4",
       "completed": "2025-01-13",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-14",
@@ -373,6 +390,7 @@
       "track": "docker-devops",
       "challenge": "D4",
       "completed": "2025-01-13",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-14",
@@ -396,6 +414,7 @@
       "track": "go-backend",
       "challenge": "C5",
       "completed": "2025-01-14",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-15",
@@ -419,6 +438,7 @@
       "track": "docker-devops",
       "challenge": "D5",
       "completed": "2025-01-14",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-15",
@@ -442,6 +462,7 @@
       "track": "go-backend",
       "challenge": "D1",
       "completed": "2025-01-15",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-16",
@@ -465,6 +486,7 @@
       "track": "docker-devops",
       "challenge": "D8",
       "completed": "2025-01-15",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-16",
@@ -488,6 +510,7 @@
       "track": "go-backend",
       "challenge": "D2",
       "completed": "2025-01-16",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-17",
@@ -511,6 +534,7 @@
       "track": "go-backend",
       "challenge": "D3",
       "completed": "2025-01-17",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-18",
@@ -534,6 +558,7 @@
       "track": "go-backend",
       "challenge": "E1",
       "completed": "2025-01-18",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-19",
@@ -557,6 +582,7 @@
       "track": "go-backend",
       "challenge": "E2",
       "completed": "2025-01-19",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2025-01-20",
@@ -580,6 +606,7 @@
       "track": "redes-pratica",
       "challenge": "R1",
       "completed": "2026-07-20",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2026-07-21",
@@ -603,10 +630,11 @@
       "track": "docker-devops",
       "challenge": "D6",
       "completed": "2026-07-22",
+      "status": "archived",
       "intervals": {
         "1d": {
           "date": "2026-08-02",
-          "status": "pending"
+          "status": "passed"
         },
         "30d": {
           "date": "2026-08-31",
@@ -622,5 +650,8 @@
         }
       }
     }
-  ]
+  ],
+  "baseline_pending": {
+    "go-backend": true
+  }
 }

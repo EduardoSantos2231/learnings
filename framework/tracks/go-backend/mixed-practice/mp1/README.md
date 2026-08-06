@@ -1,28 +1,24 @@
-# Mixed Practice 1 — Escolha de Ferramentas
+# MP1 — Fundamentos em contexto
 
-> Interleaving: você não sabe de antemão qual padrão usar. Decida.
+> Revisao pratica | Faca um cenario por sessao.
 
-## Cenário 1: Sistema de Desfazer/Refazer
+Escolha o cenario indicado pela CLI. Implemente uma solucao pequena e justifique a escolha.
 
-Você precisa implementar undo/redo para um editor de texto.
-Cada ação do usuário é registrada e pode ser desfeita ou refeita.
+## Cenarios
 
-**Pergunta:** Qual estrutura usar — Stack, Queue, ou LinkedList?
-Implemente a operação de undo.
+1. **Undo/redo:** use duas stacks para desfazer e refazer acoes de texto.
+2. **Erros:** modele erro de parsing com `errors.Is` e erro de rede com `errors.As`.
+3. **Plugins:** processe formatos diferentes por uma interface de metodo unico.
 
-## Cenário 2: Log de Erros com Níveis
+## Pronto quando
 
-Você precisa de um sistema de log com níveis (DEBUG, INFO, WARN, ERROR).
-Erros de parsing de configuração devem ser detectáveis com `errors.Is`.
-Erros de rede devem ser inspecionáveis com `errors.As` para extrair o status code.
+- O cenario escolhido tem testes executaveis.
+- A estrutura escolhida e adequada ao fluxo.
+- A implementacao usa apenas a biblioteca padrao.
 
-**Pergunta:** Como estruturar os erros? Sentinel errors, tipo customizado, ou ambos?
-Implemente.
+## Responda
 
-## Cenário 3: Plugin System
+- Qual alternativa voce rejeitou e por que?
+- Qual caso de borda quase passou despercebido?
 
-Você está construindo um sistema que suporta plugins: cada plugin processa
-um tipo de arquivo (PDF, imagem, texto). No futuro, novos formatos serão adicionados.
-
-**Pergunta:** Interface com método único ou type switch? Qual escala melhor?
-Implemente a abordagem escolhida e justifique.
+> Confianca: [1-5]

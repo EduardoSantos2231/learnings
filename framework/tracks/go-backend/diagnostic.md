@@ -1,70 +1,39 @@
-# Diagnóstico — Go Backend
+# Diagnostico pratico — Go Backend
 
-> Responda antes de começar a track. Isso posiciona você no ponto certo do roadmap.
-> Sem consulta. Se não souber, deixe em branco (não chute).
+> Execute sem consulta. O objetivo e escolher o proximo bloco, nao obter nota.
 
-## Q1 — Erros
+## Faca
 
-O que `errors.Is` faz que `==` não faz? Dê um exemplo em que `==` falharia.
+Implemente um pequeno servico HTTP em Go que:
 
-> Confiança: [1-5]
+1. Aceite `POST /items` com `{"name":"x"}`.
+2. Retorne `400` para JSON invalido ou nome vazio.
+3. Retorne `201` com um ID crescente para cada item valido.
+4. Use um mutex para proteger o armazenamento.
+5. Processe em paralelo uma lista de tarefas de validacao, com limite de 3 e cancelamento por `context.Context`.
 
-## Q2 — Interfaces
+## Restricoes
 
-```go
-var w io.Writer
-var buf *bytes.Buffer
-w = buf
-fmt.Println(w == nil) // true ou false?
-```
+- Use apenas a biblioteca padrao.
+- Escreva testes para entradas validas, invalidas e concorrentes.
+- Rode `go test -race ./...`.
 
-O que imprime e por quê?
+## Pronto quando
 
-> Confiança: [1-5]
+- O servidor atende os tres cenarios HTTP.
+- O teste com `-race` passa.
+- Voce consegue explicar onde aparecem erros, interfaces, mutex e contexto.
 
-## Q3 — Concorrência
+## Checkpoint Docker
 
-Você tem 100 URLs para buscar. Escreva o esqueleto (assinaturas) de uma solução
-concorrente com limite de 5 requisições simultâneas e timeout de 2 segundos por URL.
+- Crie uma imagem com multi-stage.
+- Rode a API com `docker run -p`.
+- Verifique o endpoint pelo host e veja os logs.
+- Explique qual processo e o PID 1.
 
-> Confiança: [1-5]
+## Responda
 
-## Q4 — Slices
+- Qual parte voce implementaria diferente em producao?
+- Qual conceito foi mais fraco durante a implementacao?
 
-```go
-s := make([]int, 0, 5)
-s = append(s, 1, 2, 3)
-t := s[1:3]
-t = append(t, 4, 5, 6, 7)
-fmt.Println(s) // ???
-```
-
-O que imprime? Explique o mecanismo por trás.
-
-> Confiança: [1-5]
-
-## Q5 — HTTP
-
-Escreva um handler HTTP em Go (stdlib) que:
-- Recebe POST com JSON `{"name": "..."}`
-- Se `name` estiver vazio, retorna 400
-- Se OK, retorna 201 com `{"id": 1, "name": "..."}`
-- Usa um mutex para proteger o contador de IDs
-
-Escreva só as assinaturas e a estrutura do handler (não precisa do main).
-
-> Confiança: [1-5]
-
----
-
-## Resultado
-
-| Questão | Acertou? | Módulo relacionado | Ação |
-|---------|----------|--------------------| ---- |
-| Q1      |          | A — Fundamentos    |      |
-| Q2      |          | E — Armadilhas     |      |
-| Q3      |          | B — Concorrência   |      |
-| Q4      |          | C — Estruturas     |      |
-| Q5      |          | D — HTTP & APIs    |      |
-
-**Posicionamento:** [definido pelo professor após correção]
+> Confianca: [1-5]

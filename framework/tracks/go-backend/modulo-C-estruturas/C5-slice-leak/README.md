@@ -1,46 +1,27 @@
-# slice-leak
+# C5 — Slice e backing array
 
-Visualizar o backing array da slice e entender por que `Pop` precisa zerar o elemento removido.
+> Debug | 45 min | Go stdlib
 
-## Tarefas
+## Objetivo
 
-### 1 — Crie uma slice com capacidade extra
+Demonstre e corrija referencias mantidas por uma slice depois de remover itens.
 
-```go
-original := make([]string, 0, 5)
-original = append(original, "a", "b", "c", "d")
-```
+## Faca
 
-### 2 — Função `pop`
+1. Crie uma slice com capacidade maior que o tamanho.
+2. Compare `pop` que nao zera com `popSafe` que zera.
+3. Remova o primeiro item e observe o backing array.
+4. Teste o comportamento depois de `append`.
 
-```go
-func pop(s []string) ([]string, string)
-```
+## Pronto quando
 
-- Remove o último elemento.
-- **Não** zera o elemento removido.
+- O programa mostra a referencia retida e a correcao.
+- `popSafe` zera o elemento antes de cortar a slice.
+- O teste cobre capacidade extra e append posterior.
 
-### 3 — Função `popSafe`
+## Responda
 
-```go
-func popSafe(s []string) ([]string, string)
-```
+- Por que o tamanho da slice nao descreve toda a memoria referenciada?
+- Qual operacao exige zerar referencias?
 
-- Remove o último elemento.
-- **Zera** o elemento removido (`s[last] = ""`) antes de cortar.
-
-### 4 — Função `dequeue`
-
-```go
-func dequeue(s []string) ([]string, string)
-```
-
-- Remove o primeiro elemento.
-
-### 5 — main
-
-No `main.go`:
-- Crie a slice, chame `pop`, depois print `s[:cap(s)]` — o elemento "removido" ainda está lá.
-- Chame `popSafe`, print `s[:cap(s)]` — o elemento foi zerado.
-- Chame `dequeue`, print `s[:cap(s)]` — o primeiro elemento ainda está no backing array, mas fora da janela da slice.
-- Demonstre que `append` após `dequeue` pode **sobrescrever** o elemento "perdido" (ou reexpor o antigo se houver capacidade).
+> Confianca: [1-5]

@@ -1,16 +1,15 @@
 # Roadmap — Docker & DevOps
 
-> Track de Docker do zero a stacks production-ready.
-> Siga a ordem. O professor anuncia o próximo automaticamente.
+> Competencia complementar ao Go Backend: empacotar, executar e operar o mesmo codigo.
+> Docker nao cria uma fila paralela; entra como checkpoint operacional dos marcos Go.
 
 ## Posição atual
 
 | Campo | Valor |
 |-------|-------|
-| Módulo atual | Mixed Practice 1 |
-| Último concluído | D6-multi-stage |
-| Próximo desafio | MP1-diagnostico-containers |
-| Próximo formato | Mixed Practice |
+| Papel | Complementar ao roadmap Go |
+| Proximo uso | Containerizar o diagnostico e a primeira API Go |
+| Formato | Checkpoint pratico junto do desafio Go |
 
 ---
 
@@ -87,3 +86,13 @@
 - ✅ Concluído
 - ⬜ Pendente
 - 🔄 Revisão pendente (spaced repetition)
+
+## Checkpoints operacionais
+
+| Marco Go | Pratica Docker |
+|----------|----------------|
+| Diagnostico | Build, run, logs e remocao do container |
+| Primeira API HTTP | Porta, healthcheck e encerramento correto |
+| Concorrencia | Sinais, PID 1 e cancelamento |
+| API com cache | Imagem multi-stage e healthcheck |
+| Capstone | Compose, rede e persistencia quando necessario |

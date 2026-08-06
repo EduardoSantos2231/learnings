@@ -1,35 +1,32 @@
-# [NOME DO DESAFIO] — Design
+# [ID] — [NOME]
 
-> Template: Design | Projete antes de implementar.
-> Bons designs evitam reescritas. Código é o último passo.
+> Design | [minutos]
 
 ## Problema
 
-[Descrição do problema a ser resolvido — sem sugestão de solução]
+[Regra de negocio, entradas, saidas e limite. Nao sugira a solucao.]
 
-## Tarefas
+## Faca
 
-### Tarefa 1: API / Interface
+1. Escreva as assinaturas da API publica.
+2. Desenhe o fluxo e a estrutura interna.
+3. Compare duas alternativas e escolha uma.
+4. Implemente o design escolhido.
 
-Desenhe a API pública (funções, tipos, interfaces) que resolve o problema.
-Escreva as assinaturas em Go e explique o racional de cada escolha.
+## Pronto quando
 
-### Tarefa 2: Estrutura interna
+- A API cobre os cenarios obrigatorios.
+- O fluxo esta representado por texto ou diagrama.
+- Testes validam a implementacao.
 
-Descreva a estrutura de dados interna e o fluxo de execução.
-Use texto ou diagrama ASCII.
+## Restricoes
 
-### Tarefa 3: Tradeoffs
+- Tarefas 1–3 antes do codigo.
+- Documente qualquer mudanca feita durante a implementacao.
 
-Liste 2 decisões de design que você tomou e as alternativas que rejeitou.
-Para cada uma: por que escolheu A em vez de B?
+## Responda
 
-### Tarefa 4: Implementação
+- Qual decisao mais limita a evolucao?
+- Que evidencia faria voce trocar de abordagem?
 
-Implemente seguindo seu design. Se o design mudar durante a implementação,
-documente o que mudou e por quê.
-
-## Restrições
-
-- Tarefas 1-3 devem ser concluídas ANTES de escrever código (tarefa 4)
-- Se precisar mudar o design na tarefa 4, explique o motivo
+> Confianca: [1-5]

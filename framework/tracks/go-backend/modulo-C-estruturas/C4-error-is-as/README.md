@@ -1,45 +1,27 @@
-# error-is-as
+# C4 — errors.Is e errors.As
 
-Consolidar a diferença entre `errors.Is` (valor sentinela) e `errors.As` (tipo).
+> Debug | 45 min | Go stdlib
 
-## Tarefas
+## Objetivo
 
-### 1 — Defina erros
+Corrija o handler que confunde erro sentinela, erro tipado e erro wrappeado.
 
-```go
-var ErrNotFound = errors.New("not found")
+## Faca
 
-type ValidationError struct {
-    Field string
-}
+1. Reproduza os casos `not found`, validacao e banco.
+2. Use `errors.Is` para valor sentinela.
+3. Use `errors.As` para extrair o erro tipado.
+4. Preserve contexto com `%w`.
 
-func (e ValidationError) Error() string {
-    return fmt.Sprintf("validation failed on field: %s", e.Field)
-}
-```
+## Pronto quando
 
-### 2 — Função `processItem`
+- Os tres erros sao classificados corretamente.
+- Comparar o erro wrappeado com `==` deixa de ser necessario.
+- `go test ./...` passa.
 
-```go
-func processItem(id string) error
-```
+## Responda
 
-- Se `id == ""`: retorna `ErrNotFound`
-- Se `id == "0"`: retorna `ValidationError{Field: "id"}`
-- Se `id == "x"`: retorna `fmt.Errorf("db error: %w", ErrNotFound)`
-- Senão: retorna `nil`
+- O que se perde ao usar `%v` no lugar de `%w`?
+- Quando `errors.As` seria a escolha errada?
 
-### 3 — Função `handleError`
-
-```go
-func handleError(err error)
-```
-
-- Usa `errors.Is` para detectar `ErrNotFound` e printa "not found"
-- Usa `errors.As` para detectar `*ValidationError` e printa o campo
-- Mostra que `==` não funciona com o wrapped error (`"db error: %w"`)
-- Mostra que `errors.As` precisa de `*ValidationError` (ponteiro), não `ValidationError`
-
-### 4 — main
-
-Crie um `main.go` que chama `processItem` com `""`, `"0"`, `"x"` e `"42"`, passa cada resultado para `handleError`, e printa os resultados.
+> Confianca: [1-5]

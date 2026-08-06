@@ -1,27 +1,24 @@
-# Mixed Practice 4 — Debugging de APIs
+# MP4 — APIs em contexto
 
-> Interleaving: encontre e corrija problemas em APIs HTTP reais.
+> Revisao pratica | Faca um cenario por sessao.
 
-## Cenário 1: Middleware Fora de Ordem
+Escolha o cenario indicado pela CLI. Reproduza o problema antes de corrigir.
 
-Uma API tem os middlewares: `Auth → Logger → Recoverer → CORS → mux`.
-Requisições OPTIONS (preflight) estão retornando 401 antes de chegar ao CORS.
+## Cenarios
 
-**Pergunta:** Qual é o bug? Como corrigir? Qual a ordem correta e por quê?
-Corrija o código.
+1. **Middleware:** corrija preflight CORS bloqueado por autenticacao.
+2. **Cache:** corrija a race condition entre leitura, expiracao e cleanup.
+3. **Logging:** corrija o vazamento causado por uma goroutine por requisicao.
 
-## Cenário 2: Race Condition no Cache
+## Pronto quando
 
-Um cache TTL é usado por uma API. Sob carga (100 req/s), clientes diferentes
-estão recebendo valores inconsistentes para a mesma chave.
+- O bug e reproduzido por um teste.
+- A correcao passa sem alterar o contrato HTTP.
+- `go test -race ./...` passa quando aplicavel.
 
-**Pergunta:** Onde está a race condition? RWMutex, cleanup goroutine, ou lazy eviction?
-Corrija.
+## Responda
 
-## Cenário 3: Vazamento de Goroutine
+- Qual era a causa raiz?
+- Como impediria a regressao?
 
-Após 1 hora rodando, a API tem 5000 goroutines vivas. O código cria uma
-goroutine por requisição para logging assíncrono.
-
-**Pergunta:** Qual o problema e como corrigir? Channel bufferizado, worker pool,
-ou log síncrono? Implemente a correção.
+> Confianca: [1-5]

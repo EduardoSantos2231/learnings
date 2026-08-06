@@ -1,62 +1,27 @@
-# Capstone 5 — Auditoria de Código Go
+# C5 — Auditoria de codigo Go
 
-> Template: Capstone | Síntese do Módulo E + Revisão Geral | Sem scaffolding
+> Capstone | 60 min | Revisao geral
 
-## Contexto
+## Objetivo
 
-Você recebeu um repositório Go de 500 linhas escrito por um dev júnior.
-Ele "funciona" (passa nos testes), mas está cheio de armadilhas sutis que
-causariam bugs em produção. Seu trabalho é auditar e corrigir.
+Audite um servico que passa nos testes, mas possui falhas de producao.
 
-## O código (resumo dos problemas)
+## Obrigatorio
 
-O repositório contém uma API de gerenciamento de tarefas. Os problemas incluem:
+1. Encontre nil interface, erro comparado com `==` e slice que retém memoria.
+2. Encontre uma goroutine que ignora cancelamento.
+3. Localize um acesso concorrente sem protecao.
+4. Corrija cada causa sem reescrever o servico.
 
-1. **Nil interface gotcha**: função retorna `*TaskService` nil como `TaskRepository`
-   interface. O caller verifica `repo != nil` que é true e chama método → panic.
-2. **Slice leak**: função `GetRecent(n int)` retorna `allTasks[len(allTasks)-n:]`
-   mantendo referência ao array inteiro de tasks.
-3. **Select bloqueante**: função `WaitForTask(id string)` faz select com timeout,
-   mas sem case para ctx.Done() — se o contexto for cancelado, vaza goroutine.
-4. **errors.Is/As incorreto**: usa `==` para comparar erros wrappeados com `%w`.
-   Usa `errors.Is` onde deveria usar `errors.As` para extrair campo do erro.
-5. **Middlewares fora de ordem**: CORS depois de Auth → preflight falha.
-6. **Mutex copiado por valor**: struct com mutex passada por valor em função.
-7. **Goroutine sem cleanup**: goroutine de background sem mecanismo de stop.
+## Pronto quando
 
-## Tarefas
+- Cada bug tem evidencia, severidade e correcao registrada.
+- Os testes antigos continuam passando.
+- `go test -race ./...` passa.
 
-### Fase 1: Identificação (auditoria)
+## Responda
 
-Para cada problema acima:
-- Localize no código
-- Explique por que é um bug (mecanismo interno)
-- Classifique a severidade (panic? memory leak? comportamento incorreto?)
-- Proponha a correção
+- Qual bug teria maior impacto em producao?
+- Qual teste teria detectado cada classe de falha?
 
-### Fase 2: Correção
-
-Implemente as correções. Cada correção deve ser mínima e focada —
-não reescreva o módulo inteiro.
-
-### Fase 3: Prevenção
-
-Para cada classe de bug, sugira uma prática ou ferramenta que o evitaria:
-- Linter? Qual regra?
-- Padrão de código? Qual?
-- Teste? Qual tipo?
-
-### Fase 4: Retrospectiva
-
-Quantos desses bugs você teria cometido há 19 desafios atrás?
-O que mudou na sua percepção de código Go?
-
-## Conceitos envolvidos
-
-- Nil interface (type, value) — E1, E2 (nil-interface)
-- Slice backing array — C5 (slice-leak)
-- Select sem default, ctx.Done() — B5 (select-sem-default)
-- errors.Is vs errors.As, %w — C4 (error-is-as)
-- Middleware order — D3 (middleware-chain)
-- Mutex por valor — B4 (rate-limiter)
-- Cleanup goroutine — D1 (cache-ttl)
+> Confianca: [1-5]

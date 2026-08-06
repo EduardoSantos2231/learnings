@@ -1,34 +1,31 @@
-# [NOME DO DESAFIO]
+# [ID] — [NOME]
 
-> Template: Implementação | Nível de scaffolding: [alto/médio/baixo]
+> Implementacao | [alto/medio/baixo] | [minutos]
 
-## Contexto
+## Objetivo
 
-[Breve descrição do problema real que motiva o desafio]
+[Uma frase com o comportamento observavel que sera construido.]
 
-## Especificação
+## Faca
 
-[O que o programa deve fazer — entradas, saídas, comportamento esperado]
+1. [Verbo + entrega concreta]
+2. [Verbo + regra ou caso de borda]
+3. [Verbo + teste ou integracao]
 
-## Tarefas
+## Restricoes
 
-### Tarefa 1
+- [Dependencias, APIs ou estruturas proibidas/obrigatorias]
+- [Limite de concorrencia, memoria, tempo ou formato]
 
-[Descrição da tarefa — o que implementar]
+## Pronto quando
 
-### Tarefa 2
+- [Comando ou teste que passa]
+- [Comportamento observavel]
+- [Caso de borda coberto]
 
-[Segunda tarefa, construindo sobre a primeira]
+## Responda
 
-### Tarefa 3 (opcional)
+- [Pergunta sobre uma decisao da implementacao]
+- [Pergunta sobre custo, limite ou falha]
 
-[Tarefa extra para quem terminar rápido]
-
-## Restrições
-
-- Apenas biblioteca padrão
-- [Outras restrições específicas]
-
-## Validação
-
-[Como o aluno sabe que funcionou — testes manuais, cenários de exemplo]
+> Confianca: [1-5]

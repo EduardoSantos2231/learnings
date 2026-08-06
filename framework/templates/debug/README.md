@@ -1,41 +1,31 @@
-# [NOME DO DESAFIO] — Debug
+# [ID] — [NOME]
 
-> Template: Debug | Você recebe código quebrado. Encontre e corrija todos os bugs.
+> Debug | [minutos]
 
-## Contexto
+## Objetivo
 
-[O que o programa deveria fazer]
+[O comportamento que deveria funcionar e a falha que precisa ser explicada.]
 
-## Código
+## Faca
 
-```go
-// [código com bugs intencionais]
-```
+1. Reproduza a falha com [teste/comando/cenario].
+2. Liste causa, evidencia e impacto de cada bug.
+3. Corrija o codigo existente sem reescrever do zero.
 
-## Tarefas
+## Pronto quando
 
-### Tarefa 1: Encontre os bugs
+- [Teste que falhava agora passa]
+- [Nenhum recurso fica aberto ou bloqueado]
+- [Comportamento valido anterior permanece igual]
 
-Liste todos os bugs que você encontrou, explicando:
-- O que está errado
-- Por que está errado
-- Como corrigir
+## Responda
 
-### Tarefa 2: Corrija
+- Qual foi a causa raiz?
+- Como impediria a regressao?
 
-Implemente as correções. O programa deve passar nos cenários de teste abaixo.
+## Restricoes
 
-### Tarefa 3: Prevenção
+- Nao esconda a falha com `recover`, silencio ou teste removido.
+- Explique cada mudanca relevante.
 
-Que prática(s) de desenvolvimento teria(m) evitado cada bug?
-
-## Cenários de teste
-
-| Entrada | Saída esperada |
-|---------|---------------|
-| [exemplo] | [resultado] |
-
-## Restrições
-
-- Não reescreva do zero — corrija o código existente
-- Explique cada mudança
+> Confianca: [1-5]

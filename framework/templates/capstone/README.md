@@ -1,54 +1,35 @@
-# [NOME DO CAPSTONE] — Projeto Integrador
+# [ID] — [NOME]
 
-> Template: Capstone | Projeto multi-conceito. Sem scaffolding.
+> Capstone | [minutos] | Projeto integrador
 
-## Contexto
+## Objetivo
 
-[Problema realista que exige combinar conceitos de 3+ desafios anteriores]
+[Problema pequeno que combina tres ou mais competencias anteriores.]
 
-## Requisitos
+## Obrigatorio
 
-### Funcionalidades obrigatórias
+1. [Funcionalidade observavel]
+2. [Funcionalidade que combina conceitos]
+3. [Tratamento de erro, concorrencia ou operacao]
 
-1. [Funcionalidade que usa conceito A]
-2. [Funcionalidade que usa conceito B]
-3. [Funcionalidade que usa conceito C]
-4. [Integração entre elas]
+## Fora de escopo
 
-### Requisitos não-funcionais
+- [O que deliberadamente nao sera implementado]
 
-- [Ex: performance, concorrência, tratamento de erros]
+## Pronto quando
 
-## Tarefas
+- Cada requisito tem teste ou comando de demonstracao.
+- A integracao funciona em um fluxo completo.
+- O README registra decisoes e limites.
 
-### Fase 1: Design (sem código)
+## Restricoes
 
-Desenhe a arquitetura: pacotes, interfaces, fluxo de dados.
-Explique como cada conceito dos desafios anteriores se manifesta no design.
+- Use apenas as dependencias permitidas pela track.
+- Escolha a organizacao interna; nao copie uma solucao pronta.
 
-### Fase 2: Implementação
+## Responda
 
-Implemente seguindo seu design. Documente desvios.
+- Qual conceito foi realmente necessario?
+- Qual parte voce extrairia ou removeria em uma segunda versao?
 
-### Fase 3: Testes
-
-Escreva testes que validem:
-- Cada funcionalidade isoladamente
-- A integração entre funcionalidades
-
-### Fase 4: Retrospectiva
-
-O que você faria diferente? O que os desafios anteriores te prepararam bem?
-Onde você sentiu lacunas?
-
-## Conceitos envolvidos
-
-- [Conceito 1] — do desafio [N]
-- [Conceito 2] — do desafio [N]
-- [Conceito 3] — do desafio [N]
-- [Conceito 4] — do desafio [N]
-
-## Restrições
-
-- Nenhum scaffolding — você decide estruturas, APIs, organização
-- Apenas biblioteca padrão
+> Confianca: [1-5]

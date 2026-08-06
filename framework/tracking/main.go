@@ -14,8 +14,10 @@ func main() {
 		fmt.Fprintln(osStderr, "")
 		fmt.Fprintln(osStderr, "Comandos:")
 		fmt.Fprintln(osStderr, "  status                              Posição atual, próximo desafio, revisões")
+		fmt.Fprintln(osStderr, "  session                             Escolher a sessão de hoje")
+		fmt.Fprintln(osStderr, "  finish <id> --pass|--fail            Registrar a sessão escolhida")
+		fmt.Fprintln(osStderr, "  rebaseline                          Arquivar revisões antigas da track ativa")
 		fmt.Fprintln(osStderr, "  done <challenge>                    Marcar desafio como concluído")
-		fmt.Fprintln(osStderr, "  review <challenge> <1d|3d|7d|30d> --pass|--fail  Registrar resultado de revisão")
 		fmt.Fprintln(osStderr, "  add-error <challenge> <categoria> \"<descrição>\"  Registrar erro")
 		fmt.Fprintln(osStderr, "  check-recurrence <categoria>        Verificar se categoria de erro já apareceu")
 		fmt.Fprintln(osStderr, "  start <track>                       Ativar uma track de estudo")
@@ -27,20 +29,16 @@ func main() {
 	case "status":
 		statusCmd()
 
-	case "done":
-		if len(args) < 2 {
-			fmt.Fprintln(osStderr, "uso: tracking done <challenge>")
-			return
-		}
-		doneCmd(args[1])
+	case "session":
+		sessionCmd()
 
-	case "review":
-		if len(args) < 4 {
-			fmt.Fprintln(osStderr, "uso: tracking review <challenge> <1d|3d|7d|30d> --pass|--fail")
+	case "finish":
+		if len(args) < 3 {
+			fmt.Fprintln(osStderr, "uso: tracking finish <id> --pass|--fail")
 			return
 		}
-		var result string
-		switch args[3] {
+		result := ""
+		switch args[2] {
 		case "--pass":
 			result = "passed"
 		case "--fail":
@@ -49,7 +47,17 @@ func main() {
 			fmt.Fprintln(osStderr, "resultado deve ser --pass ou --fail")
 			return
 		}
-		reviewCmd(args[1], args[2], result)
+		finishCmd(args[1], result)
+
+	case "rebaseline":
+		rebaselineCmd()
+
+	case "done":
+		if len(args) < 2 {
+			fmt.Fprintln(osStderr, "uso: tracking done <challenge>")
+			return
+		}
+		finishCmd(args[1], "passed")
 
 	case "add-error":
 		if len(args) < 4 {

@@ -39,8 +39,8 @@ O aluno:
 3. Para cada erro: explicar o porquê e sugerir correção
 4. **Cruzar com correcoes.md da track** — verificar se erro já apareceu antes (recorrência)
 5. Atualizar `correcoes.md` com os erros encontrados
-6. Atualizar `roadmap.md` — marcar desafio como ✅
-7. Atualizar `spaced-repetition/schedule.md` — agendar revisitas
+6. Executar `tracking finish <id> --pass` — a CLI atualiza o estado
+7. Para Mixed Practice e capstones, a CLI cria um bloco de revisão prática
 
 ### 4.1 Calibragem Metacognitiva
 
@@ -52,7 +52,17 @@ Toda resposta inclui campo de confiança:
 
 O professor compara confiança declarada com acertos reais. Padrões de superconfiança em tópicos específicos são sinalizados ao aluno.
 
-## 5. Fading de Suporte
+## 5. Revisão e Rotação
+
+- Desafios comuns não criam quatro revisões independentes.
+- Mixed Practices agrupam os conceitos do módulo em cenários práticos.
+- A CLI alterna entre desafio novo e revisão vencida.
+- A revisão de um bloco segue `1d → 7d → 30d` progressivamente.
+- Uma falha cria apenas um reparo prático em `1d`.
+- Nunca acumular revisões para “zerar” backlog; uma sessão resolve uma tarefa.
+- Teoria vem depois do código: duas perguntas curtas sobre o comportamento observado.
+
+## 6. Fading de Suporte
 
 O nível de scaffolding nos enunciados diminui conforme o aluno avança nos módulos:
 
@@ -64,7 +74,7 @@ O nível de scaffolding nos enunciados diminui conforme o aluno avança nos mód
 
 Capstones nunca têm scaffolding — o aluno projeta e implementa do zero.
 
-## 6. Formatos de Desafio
+## 7. Formatos de Desafio
 
 Rotacionar entre templates para variabilidade de prática (Shea & Morgan 1979):
 
@@ -76,7 +86,7 @@ Rotacionar entre templates para variabilidade de prática (Shea & Morgan 1979):
 | Capstone | Template próprio |
 | Mixed-practice | Template próprio |
 
-## 7. Tom e Estilo do Professor
+## 8. Tom e Estilo do Professor
 
 - **Conciso** — respostas curtas, diretas, sem enrolação
 - **Socrático** — perguntas que fazem o aluno pensar, não decorar
@@ -84,7 +94,7 @@ Rotacionar entre templates para variabilidade de prática (Shea & Morgan 1979):
 - **Incentivador** — reconhece acertos antes de apontar erros
 - **Prático** — valoriza experimentação ("testa aí e me conta o que aconteceu")
 
-## 8. Regras Específicas por Matéria
+## 9. Regras Específicas por Matéria
 
 ### Docker
 - Nada de `sudo` cego — entender cada flag antes de rodar
@@ -93,7 +103,7 @@ Rotacionar entre templates para variabilidade de prática (Shea & Morgan 1979):
 
 ### Go
 - Apenas biblioteca padrão do Go
-- Desafios focados em entrevistas (concorrência, estruturas, HTTP, testes)
+- Desafios focados em código executável (concorrência, estruturas, HTTP, testes)
 
 ### Redes
 - Apenas `net` da stdlib (Go)
@@ -103,7 +113,7 @@ Rotacionar entre templates para variabilidade de prática (Shea & Morgan 1979):
 - `os`, `os/exec`, `syscall` (Go)
 - Experimentação no terminal real obrigatória
 
-## 9. Evidência Científica de Base
+## 10. Evidência Científica de Base
 
 | Princípio | Fonte |
 |-----------|-------|

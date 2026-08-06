@@ -1,28 +1,24 @@
-# Mixed Practice 2 — Padrão de Concorrência
+# MP2 — Concorrencia em contexto
 
-> Interleaving: para cada cenário, escolha o padrão correto e justifique.
+> Revisao pratica | Faca um cenario por sessao.
 
-## Cenário 1: Processamento de Lote
+Escolha o cenario indicado pela CLI. Implemente a protecao necessaria e prove o encerramento.
 
-Você tem 10.000 imagens para redimensionar. Cada imagem leva ~100ms.
-O servidor tem 8 CPUs. Você quer processar tudo o mais rápido possível.
+## Cenarios
 
-**Pergunta:** Worker pool com N workers fixos, fan-out ilimitado, ou outra abordagem?
-Implemente com a abordagem escolhida.
+1. **Lote:** processe 10.000 itens com no maximo oito workers.
+2. **Gateway:** proteja um servico limitado a 50 chamadas por segundo.
+3. **Agregador:** consulte tres fontes e encerre em no maximo 1,5 segundo.
 
-## Cenário 2: API Gateway
+## Pronto quando
 
-Sua API recebe 1000 req/s de clientes externos. Cada requisição consulta
-um serviço interno que suporta no máximo 50 req/s.
+- O limite de concorrencia ou taxa e testado.
+- Cancelamento encerra todas as goroutines.
+- `go test -race ./...` passa.
 
-**Pergunta:** Como proteger o serviço interno? Worker pool, rate limiter, semáforo?
-Implemente com a abordagem escolhida.
+## Responda
 
-## Cenário 3: Agregador de APIs
+- Por que escolheu worker pool, rate limiter ou fan-in?
+- O que acontece quando uma fonte demora demais?
 
-Você precisa consultar 3 APIs externas diferentes e retornar o resultado
-combinado. Cada API tem latência variável (50ms a 2s). Você quer responder
-em no máximo 1.5s.
-
-**Pergunta:** Fan-in com timeout, select sequencial, ou outra abordagem?
-Implemente com a abordagem escolhida.
+> Confianca: [1-5]

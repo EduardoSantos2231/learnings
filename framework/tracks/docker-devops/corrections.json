@@ -19,6 +19,26 @@
       "challenge": "A1",
       "category": "erros-is-as",
       "error": "Confundiu quando usar errors.Is vs errors.As (mapping de valor vs tipo)"
+    },
+    {
+      "challenge": "D1",
+      "category": "docker-start-state",
+      "error": "start não retoma execução; roda entrypoint do zero no mesmo filesystem"
+    },
+    {
+      "challenge": "D1",
+      "category": "container-states",
+      "error": "created não é running; processo nunca iniciado"
+    },
+    {
+      "challenge": "D2",
+      "category": "pid1-exec",
+      "error": "exec não cria PID 1; PID 1 original do container continua rodando"
+    },
+    {
+      "challenge": "D2",
+      "category": "filesystem-persist",
+      "error": "arquivo sobrevive a start porque vive na camada read-write do container"
     }
   ]
 }

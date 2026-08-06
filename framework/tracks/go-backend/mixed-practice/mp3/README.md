@@ -1,29 +1,24 @@
-# Mixed Practice 3 — A Estrutura Certa
+# MP3 — Estruturas e I/O em contexto
 
-> Interleaving: para cada cenário, escolha a estrutura de dados ou padrão I/O correto.
+> Revisao pratica | Faca um cenario por sessao.
 
-## Cenário 1: Histórico de Navegação
+Escolha o cenario indicado pela CLI. Compare a estrutura escolhida com uma alternativa.
 
-Você está implementando um navegador. Precisa das funcionalidades:
-- Avançar para a próxima página
-- Voltar para a página anterior
-- Ao navegar para uma nova página, o histórico "futuro" é descartado
+## Cenarios
 
-**Pergunta:** Stack, Queue, Doubly LinkedList, ou slice? Por quê?
-Implemente com `Push`, `Pop`, `Back`, `Forward`.
+1. **Historico:** implemente voltar e avancar sem preservar o futuro descartado.
+2. **Log:** transforme um arquivo maior que a memoria sem carregar tudo.
+3. **Ranking:** mantenha os dez maiores valores de um fluxo atualizado.
 
-## Cenário 2: Processador de Logs Gigantes
+## Pronto quando
 
-Você tem um arquivo de log de 10 GB. Precisa transformar cada linha para
-maiúsculas e escrever em outro arquivo. Não cabe na memória.
+- A solucao funciona em entradas vazias e grandes.
+- O uso de memoria e justificado.
+- Existe um teste do comportamento principal.
 
-**Pergunta:** Como processar? `io.Copy`, `bufio.Scanner`, `io.Pipe`, ou memory-map?
-Implemente com a abordagem escolhida.
+## Responda
 
-## Cenário 3: Ranking em Tempo Real
+- Qual estrutura resolveu o problema?
+- Qual trade-off voce aceitou?
 
-Você recebe um stream de pontuações de jogadores. Precisa responder
-"top 10" a qualquer momento, com pontuações sendo atualizadas constantemente.
-
-**Pergunta:** BST, heap, slice ordenado, ou map + ordenação periódica?
-Implemente com a abordagem escolhida.
+> Confianca: [1-5]

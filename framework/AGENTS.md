@@ -7,23 +7,22 @@
 ## 1. Inicialização da Sessão
 
 1. Ler `framework/metodo.md` (método de ensino)
-2. Executar `tracking status` (da raiz do repo)
-   - Retorna: track ativa, próximo desafio, revisões pendentes
+2. Executar `tracking status` e `tracking session` (da raiz do repo)
+   - `status` retorna contexto; `session` decide a única tarefa da sessão
    -    Se `active_track` vazio: "Nenhuma track ativa. Use `tracking start <track>`. Tracks: go-backend, docker-devops, redes-pratica, linux-systems, typescript, dsa."
 3. Executar `tracking book list` e `tracking book status` (da raiz do repo)
    - Retorna: livro ativo, capítulo atual, progresso
    - Se não houver livros: omitir seção de leitura do anúncio
-4. Checar revisões pendentes em `review_count`
+4. Seguir a ação retornada por `tracking session`: desafio ou revisão
 
 ## 2. Anúncio da Sessão
 
-Sempre apresentar AMBOS os contextos (track + livro) e deixar o aluno decidir:
+Sempre apresentar AMBOS os contextos (track + livro). O conteúdo da sessão vem da CLI:
 
 ```
-"Track: <track>. Próximo: <ID> — <nome> (<módulo>).
+"Track: <track>. Sessão: <desafio ou revisão> — <ID> — <nome>.
  Livro: <título> — capítulo <N>/<total> (<P%>).
- Revisões pendentes: <N>.
- Estudar ou ler?"
+ Revisões pendentes: <N>."
 ```
 
 Se não houver track ativa, omitir a linha da track.
@@ -31,8 +30,8 @@ Se não houver livros, omitir a linha do livro.
 
 ## 3. Fluxo do Desafio
 
-1. Identificar template do desafio (`tracking status` retorna isso no JSON)
-2. Verificar scaffolding do módulo (metodo.md §5)
+1. Identificar ação, arquivo e cenário (`tracking session` retorna isso no JSON)
+2. Verificar scaffolding do módulo (metodo.md §6)
 3. Ler README.md do diretório do desafio e apresentar ao aluno
 4. Conduzir com perguntas socráticas (metodo.md §3)
 5. Aguardar aluno escrever código e `respostas.md`
@@ -47,21 +46,21 @@ Se não houver livros, omitir a linha do livro.
    tracking add-error <id> "<categoria>" "<descricao>"
    ```
    Se `found: true`, avisar: "Este erro já apareceu em <challenges anteriores>. Revisite."
-4. **Marcar concluído:**
-   ```
-   tracking done <id>   → marca ✅ no roadmap.json + agenda revisitas 1d/3d/7d/30d
-   ```
+4. **Registrar a sessão:**
+    ```
+    tracking finish <id> --pass   → avança roadmap ou intervalo progressivo 1d/7d/30d
+    ```
 5. Comparar confiança declarada (1-5) com acertos reais
 
 ## 5. Revisão Espaçada
 
-Se o aluno escolher revisar:
-1. Apresentar mini-teste sobre o desafio da revisão
+Se `tracking session` retornar uma revisão:
+1. Apresentar o cenário prático retornado pela CLI
 2. Corrigir
 3. Registrar resultado:
    ```
-   tracking review <id> <1d|3d|7d|30d> --pass   (se acertou)
-   tracking review <id> <1d|3d|7d|30d> --fail   (se errou: ciclo reinicia)
+    tracking finish <bloco> --pass   (avança para 7d, 30d ou conclui)
+    tracking finish <bloco> --fail   (agenda um reparo em 1d)
    ```
 
 ## 6. Avanço
@@ -79,10 +78,12 @@ Se o aluno escolher revisar:
 | Ação | Comando |
 |------|---------|
 | Saber posição atual | `tracking status` |
-| Marcar concluído | `tracking done <id>` |
+| Escolher sessão | `tracking session` |
+| Registrar sessão | `tracking finish <id> --pass\|--fail` |
+| Recomeçar diagnóstico | `tracking rebaseline` |
 | Registrar erro | `tracking add-error <id> <cat> "<desc>"` |
 | Verificar recorrência | `tracking check-recurrence <cat>` |
-| Registrar revisão | `tracking review <id> <int> --pass\|--fail` |
+| Registrar revisão | `tracking finish <bloco> --pass\|--fail` |
 | Trocar track | `tracking start <track>` |
 | Ver roadmap legível | `tracking render-roadmap` |
 

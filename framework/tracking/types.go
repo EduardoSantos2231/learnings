@@ -35,21 +35,31 @@ type Interval struct {
 
 type Review struct {
 	Track     string              `json:"track"`
-	Challenge string              `json:"challenge"`
+	Challenge string              `json:"challenge,omitempty"`
+	Block     string              `json:"block,omitempty"`
 	Completed string              `json:"completed"`
-	Intervals map[string]Interval `json:"intervals"`
+	Stage     string              `json:"stage,omitempty"`
+	NextDue   string              `json:"next_due,omitempty"`
+	Status    string              `json:"status,omitempty"`
+	Attempts  int                 `json:"attempts,omitempty"`
+	Variant   int                 `json:"variant,omitempty"`
+	Intervals map[string]Interval `json:"intervals,omitempty"` // legacy reviews
 }
 
 type Schedule struct {
-	ActiveTrack string   `json:"active_track"`
-	Reviews     []Review `json:"reviews"`
+	SchemaVersion   int             `json:"schema_version,omitempty"`
+	ActiveTrack     string          `json:"active_track"`
+	Reviews         []Review        `json:"reviews"`
+	LastSessionKind string          `json:"last_session_kind,omitempty"`
+	LastSessionID   string          `json:"last_session_id,omitempty"`
+	BaselinePending map[string]bool `json:"baseline_pending,omitempty"`
 }
 
 type CorrectionEntry struct {
-	Challenge    string   `json:"challenge"`
-	Category     string   `json:"category"`
-	Error        string   `json:"error"`
-	Recurrences  []string `json:"recurrences,omitempty"`
+	Challenge   string   `json:"challenge"`
+	Category    string   `json:"category"`
+	Error       string   `json:"error"`
+	Recurrences []string `json:"recurrences,omitempty"`
 }
 
 type Corrections struct {

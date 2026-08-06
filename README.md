@@ -1,6 +1,7 @@
 # learnings
 
 Framework de estudos com zero atrito decisório baseado em evidência científica.
+Go Backend e a espinha dorsal; Docker entra como competencia operacional sobre os mesmos projetos.
 
 ## Como funciona
 

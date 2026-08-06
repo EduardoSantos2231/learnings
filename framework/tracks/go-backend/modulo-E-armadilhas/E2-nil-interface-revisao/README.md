@@ -1,29 +1,26 @@
-# nil-interface-revisao (reativado)
+# E2 — Nil interface: revisao
 
-Retomar o exercício abandonado B.3 — nil interface gotcha.
+> Explicacao pratica | 30 min | Go stdlib
 
-## Tarefas
+## Objetivo
 
-### 1 — Crie um programa que demonstra o gotcha
+Mostre o modelo `(type, value)` de uma interface com um exemplo executavel.
 
-```go
-var w io.Writer          // (type=nil, value=nil) → w == nil: true
-var buf *bytes.Buffer    // nil pointer
-w = buf                  // (type=*bytes.Buffer, value=nil) → w != nil: true!
-w.Write([]byte("hello")) // panic!
-```
+## Faca
 
-### 2 — Implemente `safeWrite`
+1. Crie uma interface nil e uma interface com ponteiro nil.
+2. Preveja e confirme `w == nil` nos dois casos.
+3. Explique o resultado em ate 150 palavras.
+4. Escreva um teste que impeça o panic da correcao.
 
-```go
-func safeWrite(w io.Writer, data []byte) (int, error)
-```
+## Pronto quando
 
-- Verifica se `w` é nil (tanto interface nil quanto pointer nil dentro da interface).
-- Usa `reflect.ValueOf(w).IsNil()` — mas **antes** verifica o Kind para não panicar em tipos não nilable.
+- O exemplo compila e roda.
+- A explicacao diferencia tipo nil de valor nil.
+- O teste cobre ambos os casos.
 
-### 3 — Explique
+## Responda
 
-Escreva em `respostas.md`: por que `w != nil` mesmo com `buf` sendo nil?
+- Qual erro de API permite esse bug chegar ao chamador?
 
-Referência: exercício original em `14-nil-interface-gotcha/`.
+> Confianca: [1-5]
