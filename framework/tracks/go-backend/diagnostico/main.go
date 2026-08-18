@@ -1,21 +1,21 @@
 package main
 
 import (
+	"context"
+	"diagnostico/data_types"
 	"diagnostico/storage"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+
+	"golang.org/x/tools/go/analysis/passes/defers"
 )
 
 var FakeDb = storage.NewStorage()
 
-type UserData struct {
-	Name string `json:"name"`
-}
-
-type userReqData struct {
-	Ids []int `json:"ids"`
+type validator interface {
+	isValid() bool
 }
 
 func main() {
@@ -32,14 +32,14 @@ func main() {
 // Action: add an item to the storage
 func handleItemAddition(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var uD UserData
+	var uD datatypes.UserData
 	reader := json.NewDecoder(r.Body)
 	err := reader.Decode(&uD)
 	if err != nil {
 		setStatus(w, http.StatusBadRequest)
 		return
 	}
-	if !uD.isValid() {
+	if !uD.IsValid() {
 		setStatus(w, http.StatusBadRequest)
 		return
 	}
@@ -66,13 +66,13 @@ func handleItemListing(w http.ResponseWriter, _ *http.Request) {
 
 func handleSetItemDone(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var userReq userReqData
+	var userReq datatypes.UserReqData
 	err := json.NewDecoder(r.Body).Decode(&userReq)
 	if err != nil {
 		setStatus(w, http.StatusBadRequest)
 		return
 	}
-	if !userReq.isValid() {
+	if !userReq.IsValid() {
 		setStatus(w, http.StatusBadRequest)
 		return
 	}
@@ -114,10 +114,13 @@ func LogMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func (u *UserData) isValid() bool {
-	return u.Name != ""
-}
+func chainValidation(r *http.Request, v ...validator) {
+	limit := make(chan struct{}, 3)
+	ctx, cancel := context.WithCancel(r.Context())
+	defer cancel()
+	for _, val := range v {
+		go func(val validator) {
 
-func (u *userReqData) isValid() bool {
-	return len(u.Ids) > 0
+		}(val)
+	}
 }
